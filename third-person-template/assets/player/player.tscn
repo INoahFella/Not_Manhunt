@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://b51g8scf3fprn"]
+
+[ext_resource type="Script" uid="uid://yvl1rf2dyppr" path="res://assets/player/player.gd" id="1_h6qv0"]
+[ext_resource type="Script" uid="uid://dvw4w1rkr8l85" path="res://assets/script/state/state_machine.gd" id="3_11pk4"]
+[ext_resource type="Script" uid="uid://bqqyg2fhwjoyh" path="res://assets/player/states/state_idle.gd" id="4_iffc0"]
+[ext_resource type="Script" uid="uid://pqbehjlnro8k" path="res://assets/player/states/state_walk.gd" id="5_kyhyd"]
+[ext_resource type="Material" uid="uid://drqscy4l74qow" path="res://assets/textures/test_material.tres" id="7_tb4ck"]
+[ext_resource type="Shader" uid="uid://bwsxcln6eatjt" path="res://assets/player/player.gdshader" id="8_kwvpd"]
+[ext_resource type="Script" uid="uid://s0f4f2336heh" path="res://assets/player/player_camera.gd" id="14_iffc0"]
+[ext_resource type="Script" uid="uid://bvfhviaedytuj" path="res://assets/player/states/state_fall.gd" id="25_oqiui"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im46j"]
+radius = 0.5336914
+height = 2.009769
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7omo5"]
+radius = 0.1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ycnl4"]
+dof_blur_near_enabled = true
+dof_blur_near_distance = 1.14
+dof_blur_amount = 0.04
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_toylo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op4fd"]
+shader = ExtResource("8_kwvpd")
+shader_parameter/wiggle = 0.03
+shader_parameter/wiggle_speed = 25.0
+shader_parameter/smear = 1.0
+shader_parameter/blur_samples = 15
+
+[node name="Player" type="CharacterBody3D" unique_id=891888201 groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+wall_min_slide_angle = 0.174533
+floor_snap_length = 0.25
+script = ExtResource("1_h6qv0")
+
+[node name="Machine" type="Node" parent="." unique_id=1197860542]
+script = ExtResource("3_11pk4")
+
+[node name="Idle" type="Node" parent="Machine" unique_id=425808655]
+script = ExtResource("4_iffc0")
+
+[node name="Walk" type="Node" parent="Machine" unique_id=1215373912]
+script = ExtResource("5_kyhyd")
+
+[node name="Fall" type="Node" parent="Machine" unique_id=1811049600]
+script = ExtResource("25_oqiui")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1786152815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0543071, 0)
+shape = SubResource("CapsuleShape3D_im46j")
+
+[node name="PivotCenter" type="Marker3D" parent="." unique_id=34596850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.531719, 0)
+
+[node name="PivotCamera" type="Marker3D" parent="." unique_id=1422628625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203432, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PivotCamera" unique_id=57463263]
+transform = Transform3D(1, 0, 0, 0, 0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 0.857571, 0)
+shape = SubResource("SphereShape3D_7omo5")
+spring_length = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="PivotCamera/SpringArm3D" unique_id=728546508]
+attributes = SubResource("CameraAttributesPractical_ycnl4")
+h_offset = 1.3
+v_offset = 0.86
+doppler_tracking = 1
+current = true
+fov = 61.7
+near = 0.015
+script = ExtResource("14_iffc0")
+
+[node name="PivotCharacter" type="Marker3D" parent="." unique_id=1607399938]
+
+[node name="Character" type="MeshInstance3D" parent="PivotCharacter" unique_id=992195130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("7_tb4ck")
+mesh = SubResource("CapsuleMesh_toylo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PivotCharacter" unique_id=918863546]
+
+[node name="PivotCharacterMock" type="Marker3D" parent="." unique_id=690234065]
+
+[node name="VFX" type="Marker3D" parent="." unique_id=179495326]
+
+[node name="WallCaster" type="Marker3D" parent="." unique_id=1903481597]
+
+[node name="1" type="RayCast3D" parent="WallCaster" unique_id=350428465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="2" type="RayCast3D" parent="WallCaster" unique_id=1033035229]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="3" type="RayCast3D" parent="WallCaster" unique_id=746265601]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="4" type="RayCast3D" parent="WallCaster" unique_id=1579454465]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="5" type="RayCast3D" parent="WallCaster" unique_id=824108858]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="6" type="RayCast3D" parent="WallCaster" unique_id=1879764735]
+transform = Transform3D(-0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707106, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="7" type="RayCast3D" parent="WallCaster" unique_id=195048459]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="8" type="RayCast3D" parent="WallCaster" unique_id=249516412]
+transform = Transform3D(0.707106, 0, 0.707106, 0, 1, 0, -0.707106, 0, 0.707106, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.635)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=287926934]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2108008242]
+material = SubResource("ShaderMaterial_op4fd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="on_enter" from="Machine" to="." method="_on_machine_on_enter"]

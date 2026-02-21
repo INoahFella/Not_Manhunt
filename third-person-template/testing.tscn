@@ -1,0 +1,320 @@
+[gd_scene format=3 uid="uid://b5ta0tffe5avi"]
+
+[ext_resource type="Environment" uid="uid://557wl5noeem1" path="res://environment.tres" id="1_11ixh"]
+[ext_resource type="AudioStream" uid="uid://5tkohry1foy2" path="res://assets/audio/BG_Outside.wav" id="1_a74ic"]
+[ext_resource type="AudioStream" uid="uid://cgv210uwuvfdf" path="res://assets/audio/Intro.wav" id="1_n3efn"]
+[ext_resource type="Texture2D" uid="uid://l4i8k1ssmqnn" path="res://assets/decals/grass_1.png" id="3_w078t"]
+[ext_resource type="Texture2D" uid="uid://1eatjnk7xslr" path="res://assets/decals/graftest_1.png" id="4_w078t"]
+[ext_resource type="PackedScene" uid="uid://b51g8scf3fprn" path="res://assets/player/player.tscn" id="4_ybq6y"]
+[ext_resource type="Texture2D" uid="uid://b87o0x8lykyr7" path="res://assets/decals/graftest_2.png" id="5_qqc7k"]
+[ext_resource type="Texture2D" uid="uid://cc4qvtuohv7yr" path="res://assets/decals/fence.png" id="5_yxtlv"]
+[ext_resource type="Texture2D" uid="uid://bxkccogve0o83" path="res://assets/textures/sausagestore.png" id="6_iwa5b"]
+[ext_resource type="PackedScene" uid="uid://cptlskk3rlsbr" path="res://assets/props/tree_3.blend" id="6_w078t"]
+[ext_resource type="PackedScene" uid="uid://hbo74gdh6w8l" path="res://assets/props/lamp.dae" id="8_fd6ls"]
+[ext_resource type="Texture2D" uid="uid://fd0qsodad475" path="res://assets/decals/crack_decal_2.png" id="8_nrmhc"]
+[ext_resource type="Texture2D" uid="uid://wnqa8fhl5fp6" path="res://assets/decals/crack_decal_1.png" id="9_s5rnx"]
+[ext_resource type="Texture2D" uid="uid://buu07eytvq4xd" path="res://assets/decals/flare_1.png" id="10_2yngh"]
+[ext_resource type="Texture2D" uid="uid://bevx68de8t5p3" path="res://assets/decals/newspaper_1.png" id="11_rqpmi"]
+[ext_resource type="PackedScene" uid="uid://cmvss5sgm1rj7" path="res://assets/props/bottle.blend" id="12_boi4p"]
+[ext_resource type="Texture2D" uid="uid://qw886ngosxh0" path="res://assets/decals/edmontonPoster.png" id="13_egoch"]
+[ext_resource type="PackedScene" uid="uid://bi47pl6o2ao0l" path="res://testlevel.glb" id="18_iwa5b"]
+[ext_resource type="PackedScene" uid="uid://biq3agxwibf73" path="res://assets/props/garbageBag.glb" id="20_yxtlv"]
+[ext_resource type="PackedScene" uid="uid://vet27cx14js5" path="res://assets/props/dumpster.glb" id="21_5hair"]
+[ext_resource type="PackedScene" uid="uid://dq40rfufv00ek" path="res://assets/props/barricade_1.glb" id="22_nrmhc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nrmhc"]
+size = Vector3(2.4711914, 24, 33.86328)
+
+[node name="Level" type="Node3D" unique_id=643202892]
+
+[node name="ambience" type="AudioStreamPlayer" parent="." unique_id=1424715087]
+stream = ExtResource("1_a74ic")
+volume_db = -15.0
+pitch_scale = 0.68
+autoplay = true
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=1896991421]
+stream = ExtResource("1_n3efn")
+volume_db = -20.0
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1385208839]
+environment = ExtResource("1_11ixh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=897037105]
+transform = Transform3D(1, 0, 0, 0, -0.5606389, 0.8280604, 0, -0.8280604, -0.5606389, 0, 167.37595, -178.0385)
+light_color = Color(0.5019608, 0.41568628, 0.56078434, 1)
+light_energy = 3.134
+light_indirect_energy = 6.545
+light_angular_distance = 49.1
+light_specular = 0.316
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 10.0
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = 0.305
+shadow_opacity = 0.85
+shadow_blur = 0.0
+
+[node name="Player" parent="." unique_id=891888201 instance=ExtResource("4_ybq6y")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1337952070]
+transform = Transform3D(-2.7559355e-07, 0, -5.695, 0, 4.2576566, 0, 6.3048453, 0, -2.4893637e-07, -72.202965, 3.4137073, -18.025354)
+texture = ExtResource("5_yxtlv")
+
+[node name="Graffiti_1" type="Decal" parent="." unique_id=937030613]
+transform = Transform3D(-0.99999994, 8.742278e-08, 4.3711385e-08, -4.3711385e-08, 1.9106855e-15, -0.99999994, -8.742277e-08, -1, 1.9106853e-15, -6.8694296, 3.5928988, 18.885426)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("4_w078t")
+
+[node name="signText" type="Decal" parent="." unique_id=602915758]
+transform = Transform3D(-0.99999994, 8.742278e-08, 4.3711385e-08, -4.3711385e-08, 1.9106855e-15, -0.99999994, -8.742277e-08, -1, 1.9106853e-15, 14.992617, 9.451111, 18.202295)
+size = Vector3(12.556993, 2, 4.767502)
+texture_albedo = ExtResource("6_iwa5b")
+emission_energy = 16.0
+modulate = Color(0.9423424, 0, 0.462844, 1)
+upper_fade = 0.14489062
+
+[node name="Graffiti_3" type="Decal" parent="." unique_id=275060207]
+transform = Transform3D(-0.99999994, 8.742278e-08, 4.3711385e-08, -4.3711385e-08, 1.9106855e-15, -0.99999994, -8.742277e-08, -1, 1.9106853e-15, 0.5169828, 3.5928993, 45.60595)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("4_w078t")
+
+[node name="crack" type="Decal" parent="." unique_id=105667451]
+transform = Transform3D(-0.99999994, 8.742278e-08, 4.3711385e-08, -4.3711385e-08, 1.9106855e-15, -0.99999994, -8.742277e-08, -1, 1.9106853e-15, 22.86121, 3.5929003, 18.532402)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("8_nrmhc")
+
+[node name="crack3" type="Decal" parent="." unique_id=506313256]
+transform = Transform3D(-2.8521066, 0, 2.1137617, 0, 3.55, 0, -2.1137617, 0, -2.8521066, -48.17414, -1.0459492, 9.8415165)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("9_s5rnx")
+
+[node name="crack4" type="Decal" parent="." unique_id=232179315]
+transform = Transform3D(-1.2252007, 0, 0.9080244, 0, 1.525, 0, -0.9080244, 0, -1.2252007, -21.616917, -1.0459492, 14.570664)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("8_nrmhc")
+
+[node name="crack5" type="Decal" parent="." unique_id=1661860557]
+transform = Transform3D(1.1539538, 0, 0.63056797, 0, 1.315, 0, -0.63056797, 0, 1.1539538, -2.107275, -1.0459492, 29.029709)
+size = Vector3(7.155, 2, 5.4076614)
+texture_albedo = ExtResource("8_nrmhc")
+
+[node name="Graffiti_2" type="Decal" parent="." unique_id=418614327]
+transform = Transform3D(-2.592813, -0.11356224, 0.42582202, -0.42026722, -0.12774783, -2.5930593, 0.1326508, -2.6244397, 0.10779458, -64.21326, 6.1563616, 21.312296)
+size = Vector3(6.2706227, 2, 4.3141823)
+texture_albedo = ExtResource("5_qqc7k")
+
+[node name="grass2" type="Sprite3D" parent="." unique_id=1162054811]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, 19.210537, 1.7957988, -21.51075)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass4" type="Sprite3D" parent="." unique_id=260414299]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, 2.1908379, 1.7957988, -21.51075)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass5" type="Sprite3D" parent="." unique_id=1383600134]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, -5.6541953, 1.7957988, -20.392578)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass6" type="Sprite3D" parent="." unique_id=560045370]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, -20.348133, 1.7957988, -14.717001)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass7" type="Sprite3D" parent="." unique_id=1577056718]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, -48.292385, 1.7957988, -14.717001)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass8" type="Sprite3D" parent="." unique_id=2037315886]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, -37.345905, 2.3416367, -19.348166)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="grass3" type="Sprite3D" parent="." unique_id=74771826]
+transform = Transform3D(2.755, 0, 0, 0, 2.755, 0, 0, 0, 2.755, 26.711575, 1.3255408, -19.937479)
+billboard = 1
+texture = ExtResource("3_w078t")
+
+[node name="tree_3" parent="." unique_id=2057158599 instance=ExtResource("6_w078t")]
+transform = Transform3D(1, 0, 0, 0, 1.25643, 0, 0, 0, 1, -3.0714664, 0, -19)
+
+[node name="tree_4" parent="." unique_id=230064128 instance=ExtResource("6_w078t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.91349, -1, -18)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=399484043]
+transform = Transform3D(-0.119408965, 0, 0.9928452, 0, 1, 0, -0.9928452, 0, -0.119408965, -26.314661, 10.204823, -24.631763)
+omni_range = 24.568754
+
+[node name="lamp2" parent="." unique_id=427270613 instance=ExtResource("8_fd6ls")]
+transform = Transform3D(-1.1802075e-08, 0, -0.27, 0, 0.27, 0, 0.27, 0, -1.1802075e-08, 10.058182, -0.6165252, -18.588951)
+
+[node name="light_flare2" type="Sprite3D" parent="lamp2" unique_id=137370349]
+transform = Transform3D(-1.0927847e-06, 0, 25, 0, 25, 0, -25, 0, -1.0927847e-06, 10.678783, 29.73129, -0.09575653)
+billboard = 1
+texture = ExtResource("10_2yngh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp2" unique_id=1776046224]
+transform = Transform3D(-1.6189402e-07, -3.7037036, -1.6189402e-07, 0, -1.6189402e-07, 3.7037036, -3.7037036, 1.6189402e-07, 7.0766126e-15, 10.0773735, 29.62963, 0)
+light_color = Color(1, 1, 0.77254903, 1)
+light_energy = 2.0
+light_indirect_energy = 2.09
+light_volumetric_fog_energy = 1.715
+light_specular = 4.144
+light_bake_mode = 1
+shadow_enabled = true
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = 16.0
+shadow_blur = 1.396
+spot_range = 18.0
+spot_angle = 24.36
+
+[node name="lamp3" parent="." unique_id=604136892 instance=ExtResource("8_fd6ls")]
+transform = Transform3D(-0.032240424, 0, 0.2680682, 0, 0.27, 0, -0.2680682, 0, -0.032240424, -25.117777, -0.6165252, 18.17603)
+
+[node name="light_flare3" type="Sprite3D" parent="lamp3" unique_id=1325129963]
+transform = Transform3D(-2.9852228, 0, -24.821129, 0, 25, 0, 24.821129, 0, -2.9852228, 9.452446, 29.731297, -0.08795929)
+billboard = 1
+texture = ExtResource("10_2yngh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp3" unique_id=2046008085]
+transform = Transform3D(-1.6189402e-07, -3.7037036, -1.6189402e-07, 0, -1.6189402e-07, 3.7037036, -3.7037036, 1.6189402e-07, 7.0766126e-15, 10.0773735, 29.62963, 0)
+light_color = Color(1, 1, 0.77254903, 1)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 18.0
+
+[node name="lamp6" parent="." unique_id=227063965 instance=ExtResource("8_fd6ls")]
+transform = Transform3D(0.1474752, 0, 0.22616601, 0, 0.27, 0, -0.22616601, 0, 0.1474752, -70.533936, -0.6165252, 18.261497)
+
+[node name="light_flare3" type="Sprite3D" parent="lamp6" unique_id=2016554648]
+transform = Transform3D(-2.9852228, 0, -24.821129, 0, 25, 0, 24.821129, 0, -2.9852228, 9.452446, 29.731297, -0.08795929)
+billboard = 1
+texture = ExtResource("10_2yngh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp6" unique_id=951612015]
+transform = Transform3D(-1.6189402e-07, -3.7037036, -1.6189402e-07, 0, -1.6189402e-07, 3.7037036, -3.7037036, 1.6189402e-07, 7.0766126e-15, 10.0773735, 29.62963, 0)
+light_color = Color(1, 1, 0.77254903, 1)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 18.0
+
+[node name="lamp5" parent="." unique_id=1727649749 instance=ExtResource("8_fd6ls")]
+transform = Transform3D(-0.032240424, 0, 0.2680682, 0, 0.27, 0, -0.2680682, 0, -0.032240424, -25.117777, -0.6165252, 18.17603)
+
+[node name="light_flare3" type="Sprite3D" parent="lamp5" unique_id=995234137]
+transform = Transform3D(-2.9852228, 0, -24.821129, 0, 25, 0, 24.821129, 0, -2.9852228, 9.452446, 29.731297, -0.08795929)
+billboard = 1
+texture = ExtResource("10_2yngh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp5" unique_id=1852705316]
+transform = Transform3D(-1.6189402e-07, -3.7037036, -1.6189402e-07, 0, -1.6189402e-07, 3.7037036, -3.7037036, 1.6189402e-07, 7.0766126e-15, 10.0773735, 29.62963, 0)
+light_color = Color(1, 1, 0.77254903, 1)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 18.0
+
+[node name="lamp4" parent="." unique_id=1397854967 instance=ExtResource("8_fd6ls")]
+transform = Transform3D(-0.032240424, 0, 0.2680682, 0, 0.27, 0, -0.2680682, 0, -0.032240424, 1.2471342, -0.6165252, 43.929825)
+
+[node name="light_flare3" type="Sprite3D" parent="lamp4" unique_id=2086552165]
+transform = Transform3D(-2.9852228, 0, -24.821129, 0, 25, 0, 24.821129, 0, -2.9852228, 9.452446, 29.731297, -0.08795929)
+billboard = 1
+texture = ExtResource("10_2yngh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lamp4" unique_id=1883695382]
+transform = Transform3D(-1.6189402e-07, -3.7037036, -1.6189402e-07, 0, -1.6189402e-07, 3.7037036, -3.7037036, 1.6189402e-07, 7.0766126e-15, 10.0773735, 29.62963, 0)
+light_color = Color(1, 1, 0.77254903, 1)
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 18.0
+
+[node name="Decal" type="Decal" parent="." unique_id=1886486332]
+transform = Transform3D(-0.64555204, 0, 1.7016644, 0, 1.8199999, 0, -1.7016644, 0, -0.64555204, 20.201506, -0.32806736, 6.092716)
+size = Vector3(0.495, 1.3, 0.65)
+texture_albedo = ExtResource("11_rqpmi")
+
+[node name="poster" type="Decal" parent="." unique_id=562376114]
+transform = Transform3D(-1.7535014, 1.5910943e-07, -0.48747563, 0.4874757, 7.9554724e-08, -1.7535013, -1.3198772e-07, -1.8199999, -1.1926446e-07, 9.856502, 3.101161, 19.375414)
+size = Vector3(0.495, 0.3427368, 0.65)
+texture_albedo = ExtResource("13_egoch")
+
+[node name="poster2" type="Decal" parent="." unique_id=326998229]
+transform = Transform3D(2.2240043e-07, 1.82, 1.1759075e-07, 0.29825604, 7.955473e-08, -1.7953948, -1.7953949, 2.3866417e-07, -0.298256, -5.091228, 2.3263175, 24.420198)
+size = Vector3(0.495, 0.3427368, 0.65)
+texture_albedo = ExtResource("13_egoch")
+
+[node name="Decal2" type="Decal" parent="." unique_id=2063269174]
+transform = Transform3D(-0.645552, 0, 1.7016646, 0, 1.8199999, 0, -1.7016646, 0, -0.645552, -18.807436, -0.32806736, -0.21414185)
+size = Vector3(0.495, 1.3, 0.65)
+texture_albedo = ExtResource("11_rqpmi")
+
+[node name="Decal3" type="Decal" parent="." unique_id=1600378000]
+transform = Transform3D(1.5836095, 0, -0.8969855, 0, 1.8199999, 0, 0.8969855, 0, 1.5836095, -1.5149449, -0.32806736, -8.187222)
+size = Vector3(0.495, 1.3, 0.65)
+texture_albedo = ExtResource("11_rqpmi")
+
+[node name="Decal4" type="Decal" parent="." unique_id=2085314732]
+transform = Transform3D(1.5836096, 0, -0.89698553, 0, 1.8199999, 0, 0.89698553, 0, 1.5836096, 14.751244, -0.32806736, -9.0962105)
+size = Vector3(0.495, 1.3, 0.65)
+texture_albedo = ExtResource("11_rqpmi")
+
+[node name="Decal5" type="Decal" parent="." unique_id=431320966]
+transform = Transform3D(-1.8018079, 0, 0.25669217, 0, 1.8199999, 0, -0.25669217, 0, -1.8018079, -34.90011, -0.32806736, 9.870539)
+size = Vector3(0.495, 1.3, 0.65)
+texture_albedo = ExtResource("11_rqpmi")
+
+[node name="bottle" parent="." unique_id=1215215560 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -30.258724, -0.29068348, -11.183692)
+
+[node name="bottle2" parent="." unique_id=71399035 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 5.1599693, -0.29068348, -7.2770176)
+
+[node name="bottle3" parent="." unique_id=1321181743 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, -5.2192245, -0.29068348, -13.749529)
+
+[node name="bottle4" parent="." unique_id=1652095451 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 9.111843, -0.29068348, -16.846455)
+
+[node name="bottle5" parent="." unique_id=1251241117 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.02066769, -0.014026295, -0.0010534103, -0.00052327337, 0.0011042785, -0.024970118, 0.014056059, 0.020665035, 0.0006193315, 9.111843, -0.2464945, -12.851504)
+
+[node name="bottle6" parent="." unique_id=1287970330 instance=ExtResource("12_boi4p")]
+transform = Transform3D(0.02066769, -0.014026295, -0.0010534103, -0.00052327337, 0.0011042785, -0.024970118, 0.014056059, 0.020665035, 0.0006193315, -8.791142, -0.51182526, 9.297426)
+
+[node name="bottle7" parent="." unique_id=574821170 instance=ExtResource("12_boi4p")]
+transform = Transform3D(-0.020283008, -0.014613377, -0.0002212112, -0.00052327337, 0.0011042784, -0.024970118, 0.014605678, -0.020254131, -0.0012017944, -23.128029, -0.2464945, 17.768314)
+
+[node name="testlevel" parent="." unique_id=571031846 instance=ExtResource("18_iwa5b")]
+transform = Transform3D(1.0001147, 0, 0, 0, 1.0001147, 0, 0, 0, 1.0001147, -5.0549617, -0.59, -0.78402805)
+
+[node name="dumpster" parent="." unique_id=1026100918 instance=ExtResource("21_5hair")]
+transform = Transform3D(2.12, 0, 0, 0, 2.12, 0, 0, 0, 2.12, -6.631178, -0.26548576, 42.133896)
+
+[node name="dumpster2" parent="." unique_id=1275569196 instance=ExtResource("21_5hair")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -79.870445, -0.26548576, -17.759232)
+
+[node name="barricade_1" parent="." unique_id=212064374 instance=ExtResource("22_nrmhc")]
+transform = Transform3D(0.07808943, 0, -0.7911555, 0, 0.795, 0, 0.7911555, 0, 0.07808943, -66.70685, -0.44496465, -40.252144)
+
+[node name="barricade_2" parent="." unique_id=2116010368 instance=ExtResource("22_nrmhc")]
+transform = Transform3D(-0.12455716, 0, -0.7851818, 0, 0.795, 0, 0.7851818, 0, -0.12455716, -58.040604, -0.5895112, -41.10753)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=162598840]
+transform = Transform3D(0.00326119, 0, -0.50498945, 0, 0.505, 0, 0.50498945, 0, 0.00326119, -62.78076, 5.8075, -40.143227)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D" unique_id=1185376157]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D" unique_id=623459117]
+shape = SubResource("BoxShape3D_nrmhc")
+
+[node name="garbageBag" parent="." unique_id=1504032552 instance=ExtResource("20_yxtlv")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.290575, -0.26548386, 19.045757)
+
+[node name="garbageBag2" parent="." unique_id=1718258419 instance=ExtResource("20_yxtlv")]
+transform = Transform3D(1.5703962, -1.2384894, 0, 1.2384894, 1.5703962, 0, 0, 0, 2, 12.8688345, -0.28667116, -17.595293)
