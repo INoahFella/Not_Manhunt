@@ -5,7 +5,6 @@ const CAMERA_SPEED_VERTICAL = 1.0
 const CAMERA_LOCK_MIN = deg_to_rad(-45)
 const CAMERA_LOCK_MAX = deg_to_rad(45)
 const MOUSE_SPEED = 0.002
-const MAX_JUMP = 2
 
 @onready var state_machine := $Machine as StateMachine
 @onready var state_default := $Machine/Idle as State
