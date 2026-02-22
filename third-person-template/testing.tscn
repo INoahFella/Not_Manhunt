@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://xy4rdf55csro" path="res://assets/props/blueBin.glb" id="15_iwa5b"]
 [ext_resource type="PackedScene" uid="uid://dd1skyfrvr6qu" path="res://assets/props/grass.tscn" id="18_iwa5b"]
 [ext_resource type="Texture2D" uid="uid://cbnomk70jcks" path="res://assets/textures/manhole.png" id="18_n3efn"]
-[ext_resource type="Texture2D" uid="uid://0pdcxouit3gx" path="res://assets/textures/smoke.png" id="19_n3efn"]
+[ext_resource type="Material" uid="uid://cfk2714khd7gk" path="res://assets/materials/smoke_material.tres" id="19_yxtlv"]
 [ext_resource type="AudioStream" uid="uid://b6gw1sq1ux5ca" path="res://assets/audio/hissing.mp3" id="20_5hair"]
 [ext_resource type="PackedScene" uid="uid://biq3agxwibf73" path="res://assets/props/garbageBag.glb" id="20_yxtlv"]
 [ext_resource type="PackedScene" uid="uid://vet27cx14js5" path="res://assets/props/dumpster.glb" id="21_5hair"]
@@ -35,15 +35,8 @@ gravity = Vector3(0, 1, 0)
 scale_min = 0.0
 scale_curve = SubResource("CurveTexture_yxtlv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hair"]
-transparency = 1
-albedo_color = Color(0.50928617, 0.50928617, 0.50928617, 1)
-albedo_texture = ExtResource("19_n3efn")
-billboard_mode = 1
-billboard_keep_scale = true
-
 [sub_resource type="QuadMesh" id="QuadMesh_nrmhc"]
-material = SubResource("StandardMaterial3D_5hair")
+material = ExtResource("19_yxtlv")
 size = Vector2(5, 5)
 subdivide_width = 5
 
@@ -229,6 +222,7 @@ cull_mask = 1048573
 [node name="GPUParticles3D" type="GPUParticles3D" parent="level1/Decal3" unique_id=1483934641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5468216, 0)
 layers = 2
+cast_shadow = 0
 amount = 100
 lifetime = 10.0
 preprocess = 10.0
@@ -251,6 +245,7 @@ cull_mask = 1048573
 [node name="GPUParticles3D" type="GPUParticles3D" parent="level1/Decal4" unique_id=536888780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5468216, 0)
 layers = 2
+cast_shadow = 0
 amount = 100
 lifetime = 10.0
 preprocess = 10.0

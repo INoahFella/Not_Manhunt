@@ -20,6 +20,7 @@ var damping = 1.0
 var input_queue: String = ""
 var input_time: int = 0
 var target_camera_rotation: Vector3
+var sneakiness = 0.0
 
 func _ready() -> void:
 	state_machine.player = self
@@ -43,7 +44,12 @@ func _physics_process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta: float) -> void:
+	RenderingServer.global_shader_parameter_set("camera_position", $PivotCamera/SpringArm3D/Camera3D.global_position)
+	
 	if not enabled: return
+	
+	$VisibilityCaster/SubViewport/Camera3D.global_position = $VisibilityCaster.global_position
+	if Engine.get_frames_drawn() % 10 == 0: _visibility(delta)
 	
 	$PivotCamera.rotation.x = lerp($PivotCamera.rotation.x, target_camera_rotation.x, 1.0 - exp(-25.0 * delta))
 	$PivotCamera.rotation.y = lerp($PivotCamera.rotation.y, target_camera_rotation.y, 1.0 - exp(-25.0 * delta))
@@ -84,6 +90,29 @@ func _input_queue() -> void:
 func _on_machine_on_enter(state: State) -> void:
 	if state.ANIMATION_ENABLED:
 		state_animate.play(state.ANIMATION_NAME, state.ANIMATION_BLEND, state.ANIMATION_SPEED)
+
+func _visibility(delta: float):
+	var viewport = $VisibilityCaster/SubViewport
+	var texture = viewport.get_texture()
+	var img = texture.get_image()
+	
+	if img == null or img.is_empty(): 
+		return
+	
+	var total_lum: float = 0.0
+	var pixel_count: int = img.get_width() * img.get_height()
+	
+	for y in range(img.get_height()):
+		for x in range(img.get_width()):
+			var color = img.get_pixel(x, y)
+			var lum = color.r * 0.299 + color.g * 0.587 + color.b * 0.114
+			total_lum += lum
+	
+	var raw_visibility = total_lum / float(pixel_count)
+	var processed_val = remap(raw_visibility, 0.05, 0.4, 1.0, 0.0)
+	var target_sneakiness = clamp(processed_val, 0.0, 1.0)
+	sneakiness = clamp(lerp(sneakiness, target_sneakiness, 50.0 * delta), 0.0, 1.0)
+	sneakiness = round(sneakiness * 100.0) / 100.0
 
 func input_queued(input: String):
 	var just_pressed = Input.is_action_just_pressed(input)

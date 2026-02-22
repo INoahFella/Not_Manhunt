@@ -18,6 +18,14 @@ func zoom(to: float):
 func unzoom():
 	to_zoom = original_zoom
 
+func breath_fast():
+	if breath_tween:
+		breath_tween.kill()
+	
+	breath_tween = create_tween().set_parallel(true).set_loops()
+	breath_tween.tween_property(self, "v_offset", 0.2, 1.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	breath_tween.chain().tween_property(self, "v_offset", -0.1, 1.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	
 func breath():
 	if breath_tween:
 		breath_tween.kill()
@@ -53,7 +61,7 @@ func smooth_look_at(target_pos: Vector3, duration: float = 0.18) -> void:
 	).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 
 func _process(delta: float):
-	fov = lerp(fov, to_zoom, 0.05)
+	fov = lerp(fov, to_zoom, 0.005)
 	
 	if shake_time > 0.0:
 		shake_time -= delta

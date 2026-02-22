@@ -250,6 +250,11 @@ escape={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Level"
+3d_render/layer_10="Player"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -281,15 +286,7 @@ environment/screen_space_reflection/roughness_quality=0
 
 [shader_globals]
 
-wind_intensity={
-"type": "float",
-"value": 1.0
-}
-wind_direction={
-"type": "vec3",
-"value": Vector3(0, 0, 1)
-}
-player_position={
+camera_position={
 "type": "vec3",
 "value": Vector3(0, 0, 0)
 }

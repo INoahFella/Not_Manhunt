@@ -7,6 +7,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("2_d4tsp")
+shader_parameter/use_albedo_texture = true
 shader_parameter/albedo_texture = ExtResource("3_yc0r8")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/uv_scale = Vector3(10, 10, 10)
@@ -14,12 +15,19 @@ shader_parameter/uv_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation = 0.0
 shader_parameter/metalness = 0.4400000209
 shader_parameter/roughness = 0.0
+shader_parameter/is_billboard = false
+shader_parameter/use_decal = false
+shader_parameter/decal_intensity = 1.0
+shader_parameter/decal_scale = 1.0
 shader_parameter/grain_intensity = 0.0030000001425
 shader_parameter/grain_size = 1.0
 shader_parameter/grain_fps = 4.0
 shader_parameter/grain_threshold = 0.2
 shader_parameter/wash_out = 0.250000011875
 shader_parameter/aberration_strength = 0.050000002375
+shader_parameter/camera_position = Vector3(0, 0, 0)
+shader_parameter/fade_distance = 2.0
+shader_parameter/fade_hardness = 1.0
 shader_parameter/light_bands = 16.0
 shader_parameter/dither_size = 1.0
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
