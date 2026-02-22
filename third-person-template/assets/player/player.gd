@@ -3,13 +3,13 @@ class_name Player extends CharacterBody3D
 const CAMERA_SPEED_HORIZONTAL = 2.5
 const CAMERA_SPEED_VERTICAL = 1.0
 const CAMERA_LOCK_MIN = deg_to_rad(-45)
-const CAMERA_LOCK_MAX = deg_to_rad(80)
+const CAMERA_LOCK_MAX = deg_to_rad(45)
 const MOUSE_SPEED = 0.002
 const MAX_JUMP = 2
 
 @onready var state_machine := $Machine as StateMachine
 @onready var state_default := $Machine/Idle as State
-@onready var state_animate := $PivotCharacter/AnimationPlayer as AnimationPlayer
+@onready var state_animate := $"PivotCharacter/Animated Human/AnimationPlayer" as AnimationPlayer
 @onready var state_camera := $PivotCamera/SpringArm3D/Camera3D as PlayerCamera
 
 @export var enabled = true
@@ -19,12 +19,15 @@ var gravity_enabled = true
 var damping = 1.0
 var input_queue: String = ""
 var input_time: int = 0
+var target_camera_rotation: Vector3
 
 func _ready() -> void:
 	state_machine.player = self
 	state_machine.animate = state_animate
 	state_machine.camera = state_camera
 	state_machine.shift(state_default)
+	
+	state_camera.breath()
 	
 func _physics_process(delta: float) -> void:
 	if enabled:
@@ -39,6 +42,12 @@ func _physics_process(delta: float) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE and Input.is_action_just_pressed("player_action3"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+func _process(delta: float) -> void:
+	if not enabled: return
+	
+	$PivotCamera.rotation.x = lerp($PivotCamera.rotation.x, target_camera_rotation.x, 1.0 - exp(-25.0 * delta))
+	$PivotCamera.rotation.y = lerp($PivotCamera.rotation.y, target_camera_rotation.y, 1.0 - exp(-25.0 * delta))
+	
 func _state(delta: float) -> void:
 	var input = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	var direction = ($PivotCamera.transform.basis * Vector3(input.x, 0, input.y))
@@ -49,16 +58,16 @@ func _camera(delta: float) -> void:
 	var look_x = input.x * CAMERA_SPEED_HORIZONTAL
 	var look_y = input.y * CAMERA_SPEED_VERTICAL
 
-	$PivotCamera.rotation.y -= look_x * delta
-	$PivotCamera.rotation.x -= look_y * delta
-	$PivotCamera.rotation.x = clampf($PivotCamera.rotation.x, CAMERA_LOCK_MIN, CAMERA_LOCK_MAX)
+	target_camera_rotation.y -= look_x * delta
+	target_camera_rotation.x -= look_y * delta
+	target_camera_rotation.x = clampf(target_camera_rotation.x, CAMERA_LOCK_MIN, CAMERA_LOCK_MAX)
 
 func _input(event: InputEvent) -> void:
 	if not enabled: return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		$PivotCamera.rotation.y -= event.relative.x * MOUSE_SPEED
-		$PivotCamera.rotation.x -= event.relative.y * MOUSE_SPEED
-		$PivotCamera.rotation.x = clampf($PivotCamera.rotation.x, CAMERA_LOCK_MIN, CAMERA_LOCK_MAX)
+		target_camera_rotation.y -= event.relative.x * MOUSE_SPEED
+		target_camera_rotation.x -= event.relative.y * MOUSE_SPEED
+		target_camera_rotation.x = clampf(target_camera_rotation.x, CAMERA_LOCK_MIN, CAMERA_LOCK_MAX)
 
 func _gravity(delta: float) -> void:
 	if gravity_enabled:

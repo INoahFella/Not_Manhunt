@@ -1,6 +1,7 @@
 extends State
 
-const SPEED = 12.5
+const SPEED = 9.5
+const STEP_SOUND = preload("res://assets/player/sounds/step_sfx.tres")
 
 @onready var pivot_character = $"../../PivotCharacter"
 @onready var pivot_character_mock = $"../../PivotCharacterMock"
@@ -26,3 +27,6 @@ func frame(_delta: float, input: Vector3) -> void:
 
 func leave() -> void:
 	pass
+	
+func play_step() -> void:
+	SFX.play(STEP_SOUND, player)

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dd1skyfrvr6qu"]
+
+[ext_resource type="Texture2D" uid="uid://b4rv15ay625y5" path="res://assets/textures/sgrass5-1.png" id="1_1laoy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3j7r8"]
+size = Vector2(10, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jswv3"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_1laoy")
+
+[node name="Grass" type="Node3D" unique_id=1316004581]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=878927861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48336518, 0)
+mesh = SubResource("QuadMesh_3j7r8")
+surface_material_override/0 = SubResource("StandardMaterial3D_jswv3")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1318198726]
+transform = Transform3D(0.5, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.5, 0, 0.48336518, 0)
+mesh = SubResource("QuadMesh_3j7r8")
+surface_material_override/0 = SubResource("StandardMaterial3D_jswv3")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1264585194]
+transform = Transform3D(-0.5, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.5, 0, 0.48336518, 0)
+mesh = SubResource("QuadMesh_3j7r8")
+surface_material_override/0 = SubResource("StandardMaterial3D_jswv3")

@@ -38,9 +38,10 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"nodes": {
-"PATH:Cylinder": {
-"generate/physics": true
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/path": "uid://cdaft1nf4m416"
 }
 }
 }

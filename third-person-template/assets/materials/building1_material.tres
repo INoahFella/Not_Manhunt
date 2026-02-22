@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" script_class="ShittyMaterial3D" format=3 uid="uid://d2aykmarv4j3l"]
+
+[ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="1_af5gg"]
+[ext_resource type="Shader" uid="uid://cu8otgjy1y6g0" path="res://addons/cum_simk_materials/shaders/shitty_material_3d.gdshader" id="2_eqpcg"]
+[ext_resource type="Texture2D" uid="uid://dhxhcu5yt6c5o" path="res://assets/textures/testlevel_bricktest.png" id="3_af5gg"]
+[ext_resource type="Texture2D" uid="uid://djco4pt3tjxvt" path="res://assets/decals/cracks.png" id="4_eqpcg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("2_eqpcg")
+shader_parameter/use_albedo_texture = true
+shader_parameter/albedo_texture = ExtResource("3_af5gg")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector3(40, 40, 40)
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation = 90.000004275
+shader_parameter/metalness = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/use_decal = true
+shader_parameter/decal_texture = ExtResource("4_eqpcg")
+shader_parameter/decal_intensity = 0.22000001045
+shader_parameter/decal_scale = 57.70700273782262
+shader_parameter/grain_intensity = 0.0030000001425
+shader_parameter/grain_size = 1.0
+shader_parameter/grain_fps = 4.0
+shader_parameter/grain_threshold = 0.2
+shader_parameter/wash_out = 0.250000011875
+shader_parameter/aberration_strength = 0.050000002375
+shader_parameter/light_bands = 16.0
+shader_parameter/dither_size = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+script = ExtResource("1_af5gg")
+metadata/_custom_type_script = "uid://c882y1sfipvc0"

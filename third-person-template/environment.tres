@@ -1,31 +1,21 @@
 [gd_resource type="Environment" format=3 uid="uid://557wl5noeem1"]
 
-[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://assets/sky/day_sky.tres" id="1_0wybp"]
-
-[sub_resource type="Sky" id="Sky_5ts2b"]
-sky_material = ExtResource("1_0wybp")
-radiance_size = 0
-
 [resource]
-background_mode = 2
-background_energy_multiplier = 0.0
-sky = SubResource("Sky_5ts2b")
-sky_custom_fov = 45.7
+background_mode = 1
 ambient_light_source = 2
-ambient_light_color = Color(0.13675126, 0.127401, 0.12428417, 1)
-ambient_light_energy = 2.6
+ambient_light_color = Color(0.17283279, 0.17283261, 0.1728327, 1)
 reflected_light_source = 2
-tonemap_mode = 3
-tonemap_exposure = 0.95
-ssao_enabled = true
+tonemap_mode = 2
 ssao_power = 2.0
+sdfgi_read_sky_light = false
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.390625
+sdfgi_y_scale = 0
 glow_enabled = true
-glow_normalized = true
-glow_intensity = 2.2
-glow_bloom = 0.06
-glow_hdr_scale = 0.85
-glow_hdr_luminance_cap = 11.6
-glow_map_strength = 1.0
+glow_intensity = 2.5
+glow_strength = 0.55
+glow_blend_mode = 0
+glow_hdr_threshold = 2.0
 fog_light_color = Color(0.557078, 0.400913, 0.999986, 1)
 fog_sun_scatter = 0.02
 fog_density = 0.008
@@ -37,6 +27,3 @@ volumetric_fog_ambient_inject = 16.0
 volumetric_fog_sky_affect = 0.997
 volumetric_fog_temporal_reprojection_amount = 0.99
 adjustment_enabled = true
-adjustment_brightness = 0.87
-adjustment_contrast = 0.75
-adjustment_saturation = 0.45

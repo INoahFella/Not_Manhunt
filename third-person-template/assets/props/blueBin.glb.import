@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://hbo74gdh6w8l"
-path="res://.godot/imported/lamp.dae-e3b6e32fe8768964ed42a4290e61655b.scn"
+uid="uid://xy4rdf55csro"
+path="res://.godot/imported/blueBin.glb-97ca4dde134699356130489b60b0a4e7.scn"
 
 [deps]
 
-source_file="res://assets/props/lamp.dae"
-dest_files=["res://.godot/imported/lamp.dae-e3b6e32fe8768964ed42a4290e61655b.scn"]
+source_file="res://assets/props/blueBin.glb"
+dest_files=["res://.godot/imported/blueBin.glb-97ca4dde134699356130489b60b0a4e7.scn"]
 
 [params]
 
@@ -41,8 +41,10 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/materials/lamp_material.tres",
-"use_external/path": "uid://csclhianlqhow"
+"use_external/fallback_path": "res://assets/materials/bin_material.tres",
+"use_external/path": "uid://cdaft1nf4m416"
 }
 }
 }
+gltf/naming_version=1
+gltf/embedded_image_handling=1

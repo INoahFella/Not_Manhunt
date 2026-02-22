@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" script_class="ShittyMaterial3D" format=3 uid="uid://cdaft1nf4m416"]
+
+[ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="1_i2yih"]
+[ext_resource type="Shader" uid="uid://cu8otgjy1y6g0" path="res://addons/cum_simk_materials/shaders/shitty_material_3d.gdshader" id="2_ikw54"]
+[ext_resource type="Texture2D" uid="uid://dmmd5uwrl0l5w" path="res://assets/textures/testlevel_concrete_1.png" id="3_25ya2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("2_ikw54")
+shader_parameter/albedo_texture = ExtResource("3_25ya2")
+shader_parameter/albedo_color = Color(0.5481984, 0.6953982, 1, 1)
+shader_parameter/uv_scale = Vector3(10, 10, 10)
+shader_parameter/uv_offset = Vector3(0, 0, 0)
+shader_parameter/uv_rotation = 0.0
+shader_parameter/metalness = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/grain_intensity = 0.0030000001425
+shader_parameter/grain_size = 1.0
+shader_parameter/grain_fps = 4.0
+shader_parameter/grain_threshold = 0.2
+shader_parameter/wash_out = 0.250000011875
+shader_parameter/aberration_strength = 0.050000002375
+shader_parameter/light_bands = 16.0
+shader_parameter/dither_size = 1.0
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+script = ExtResource("1_i2yih")
+metadata/_custom_type_script = "uid://c882y1sfipvc0"
