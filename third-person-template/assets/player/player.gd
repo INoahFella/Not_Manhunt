@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	if not enabled: return
 	
 	$VisibilityCaster/SubViewport/Camera3D.global_position = $VisibilityCaster.global_position
-	if Engine.get_frames_drawn() % 10 == 0: _visibility(delta)
+	if Engine.get_frames_drawn() % 20 == 0: _visibility(delta)
 	
 	$PivotCamera.rotation.x = lerp($PivotCamera.rotation.x, target_camera_rotation.x, 1.0 - exp(-25.0 * delta))
 	$PivotCamera.rotation.y = lerp($PivotCamera.rotation.y, target_camera_rotation.y, 1.0 - exp(-25.0 * delta))
