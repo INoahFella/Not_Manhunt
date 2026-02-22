@@ -39,10 +39,22 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Material": {
+"Material.001": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/materials/bark_material.tres",
 "use_external/path": "uid://dy1q146mfumpm"
+}
+},
+"nodes": {
+"PATH:imagetostl_mesh10": {
+"physics/layer": 2,
+"physics/shape_type": 5
+},
+"PATH:tree_collision": {
+"generate/physics": true,
+"mesh_instance/layers": 0,
+"physics/layer": 2,
+"physics/shape_type": 1
 }
 }
 }

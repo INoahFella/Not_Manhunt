@@ -38,9 +38,17 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://assets/materials/garbage_material.tres",
+"use_external/path": "uid://dgv4pa8vf8n36"
+}
+},
 "nodes": {
 "PATH:Circle": {
-"physics/body_type": 2,
+"generate/physics": true,
+"physics/layer": 2,
 "physics/physics_material_override": Object(PhysicsMaterial,"resource_local_to_scene":false,"resource_name":"","friction":1.0,"rough":false,"bounce":0.47,"absorbent":false,"script":null)
 ,
 "physics/shape_type": 4

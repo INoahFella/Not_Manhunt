@@ -44,6 +44,13 @@ _subresources={
 "use_external/fallback_path": "res://assets/materials/bin_material.tres",
 "use_external/path": "uid://cdaft1nf4m416"
 }
+},
+"nodes": {
+"PATH:LP": {
+"generate/physics": true,
+"physics/layer": 2,
+"physics/shape_type": 1
+}
 }
 }
 gltf/naming_version=1

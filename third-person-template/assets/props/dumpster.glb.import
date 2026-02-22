@@ -39,8 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
-"PATH:Cylinder": {
-"generate/physics": true
+"PATH:Plane": {
+"generate/physics": true,
+"physics/layer": 2,
+"physics/shape_type": 3
 }
 }
 }

@@ -44,6 +44,18 @@ _subresources={
 "use_external/fallback_path": "res://assets/materials/bark_material.tres",
 "use_external/path": "uid://dy1q146mfumpm"
 }
+},
+"nodes": {
+"PATH:imagetostl_mesh11": {
+"physics/layer": 2,
+"physics/shape_type": 5
+},
+"PATH:tree_collision": {
+"generate/physics": true,
+"mesh_instance/layers": 0,
+"physics/layer": 2,
+"physics/shape_type": 1
+}
 }
 }
 gltf/naming_version=1
