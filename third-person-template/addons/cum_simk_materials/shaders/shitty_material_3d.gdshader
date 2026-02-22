@@ -13,6 +13,11 @@ uniform float uv_rotation : hint_range(0.0, 360.0) = 0.0;
 uniform float metalness : hint_range(0.0, 1.0) = 0.0;
 uniform float roughness : hint_range(0.0, 1.0) = 1.0;
 
+group_uniforms heightmap;
+uniform bool use_heightmap = false;
+uniform sampler2D height_texture : hint_default_black, filter_nearest;
+uniform float height_range : hint_range(-2.0, 2.0) = 0.1;
+
 group_uniforms billboard;
 uniform bool is_billboard = false;
 
@@ -47,6 +52,17 @@ const float fade_distance = 1.0;
 const float fade_hardness = 0.2;
 
 void vertex() {
+	float rad = radians(uv_rotation);
+	vec2 sin_cos = vec2(sin(rad), cos(rad));
+	mat2 rotation_matrix = mat2(vec2(sin_cos.y, -sin_cos.x), vec2(sin_cos.x, sin_cos.y));
+	vec2 rotated_uv = (UV - 0.5) * rotation_matrix + 0.5;
+	vec2 mapped_uv = rotated_uv * uv_scale.xy + uv_offset.xy;
+
+	if (use_heightmap) {
+		float h = texture(height_texture, mapped_uv).r;
+		VERTEX += NORMAL * (h * height_range);
+	}
+
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
 	if (is_billboard) {
@@ -87,7 +103,6 @@ void fragment() {
 		alpha = max(alpha, decal_tex.a * decal_intensity);
 	}
 	
-	// Dithered Proximity Fade
 	float dist = distance(world_pos, camera_position);
 	float proximity_alpha = clamp((dist / fade_distance) * fade_hardness, 0.0, 1.0);
 	

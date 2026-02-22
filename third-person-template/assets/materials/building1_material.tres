@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://cu8otgjy1y6g0" path="res://addons/cum_simk_materials/shaders/shitty_material_3d.gdshader" id="2_eqpcg"]
 [ext_resource type="Texture2D" uid="uid://dhxhcu5yt6c5o" path="res://assets/textures/testlevel_bricktest.png" id="3_af5gg"]
 [ext_resource type="Texture2D" uid="uid://djco4pt3tjxvt" path="res://assets/decals/cracks.png" id="4_eqpcg"]
+[ext_resource type="Texture2D" uid="uid://bxxxrar8gdv8" path="res://assets/textures/testlevel_bricktest_height.png" id="5_3tkt3"]
 
 [resource]
 render_priority = 0
@@ -16,6 +17,10 @@ shader_parameter/uv_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation = 90.000004275
 shader_parameter/metalness = 0.0
 shader_parameter/roughness = 1.0
+shader_parameter/use_heightmap = true
+shader_parameter/height_texture = ExtResource("5_3tkt3")
+shader_parameter/height_range = -0.94399994984
+shader_parameter/is_billboard = false
 shader_parameter/use_decal = true
 shader_parameter/decal_texture = ExtResource("4_eqpcg")
 shader_parameter/decal_intensity = 0.22000001045

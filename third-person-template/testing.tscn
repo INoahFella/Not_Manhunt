@@ -85,9 +85,9 @@ transform = Transform3D(0.56755936, 0, -0.052690864, 0, 0.57, 0, 0.052690864, 0,
 transform = Transform3D(0.59051925, 0, 0.10624054, 0, 0.6, 0, -0.10624054, 0, 0.59051925, -16.911228, 0.39969432, -8.493921)
 
 [node name="Player" parent="." unique_id=891888201 instance=ExtResource("4_ybq6y")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.025580168, 0)
 
-[node name="level1" parent="." unique_id=1192261075 instance=ExtResource("22_s5rnx")]
+[node name="level1" parent="." unique_id=1969153086 instance=ExtResource("22_s5rnx")]
 
 [node name="tree_5" parent="level1" unique_id=961627663 instance=ExtResource("7_iwa5b")]
 transform = Transform3D(2.275, 0, 0, 0, 2.275, 0, 0, 0, 2.275, 15.313656, 0.18480492, -20.628796)
