@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vet27cx14js5"
-path="res://.godot/imported/dumpster.glb-beb4f3a145ee0ce141fd0ca073129a47.scn"
+uid="uid://ht50w4ja3o7n"
+path="res://.godot/imported/bottle.glb-1b92010eca83119e04fd027cc41fb741.scn"
 
 [deps]
 
-source_file="res://assets/props/dumpster.glb"
-dest_files=["res://.godot/imported/dumpster.glb-beb4f3a145ee0ce141fd0ca073129a47.scn"]
+source_file="res://assets/props/bottle.glb"
+dest_files=["res://.godot/imported/bottle.glb-1b92010eca83119e04fd027cc41fb741.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.05
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -39,22 +39,17 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"lid": {
+"bottle": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/materials/garbage_material.tres",
-"use_external/path": "uid://dgv4pa8vf8n36"
-},
-"paint": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://assets/materials/bin_material.tres",
-"use_external/path": "uid://cdaft1nf4m416"
+"use_external/fallback_path": "res://assets/materials/bottle_material.tres",
+"use_external/path": "uid://ccyxrpf32bm0v"
 }
 },
 "nodes": {
-"PATH:Plane": {
-"generate/physics": true,
-"physics/layer": 2,
-"physics/shape_type": 3
+"PATH:13222_22oz_beer_bottle_v1": {
+"physics/body_type": 2,
+"physics/layer": 4,
+"physics/shape_type": 1
 }
 }
 }

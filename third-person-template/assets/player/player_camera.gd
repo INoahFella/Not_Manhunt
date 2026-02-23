@@ -5,8 +5,12 @@ var shake_time = 0.0
 var shake_intensity = 0.0
 var shake_decay_speed = 5.0
 var original_zoom = fov
+var original_h_offset = h_offset
+var original_v_offset = v_offset
 var to_zoom = fov
 var breath_tween: Tween
+var overlook_tween: Tween
+var overlooking: bool
 
 func shake(duration: float, intensity: float):
 	shake_time = duration
@@ -37,9 +41,33 @@ func breath():
 func unbreath():
 	if breath_tween:
 		breath_tween.kill()
+
+func overlook():
+	overlooking = true
 	
-	var reset_tween = create_tween().set_parallel(true)
-	reset_tween.tween_property(self, "v_offset", 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	if overlook_tween:
+		overlook_tween.kill()
+	if breath_tween:
+		breath_tween.kill()
+	
+	overlook_tween = create_tween().set_parallel()
+	overlook_tween.tween_property(self, "h_offset", 1.5, 0.1).set_ease(Tween.EASE_IN_OUT)
+	overlook_tween.tween_property(self, "v_offset", 1.5, 0.1).set_ease(Tween.EASE_IN_OUT)
+	
+func unoverlook():
+	
+	if overlook_tween:
+		overlook_tween.kill()
+	if breath_tween:
+		breath_tween.kill()
+	
+	overlook_tween = create_tween().set_parallel()
+	overlook_tween.tween_property(self, "h_offset", original_h_offset, 0.1).set_ease(Tween.EASE_IN_OUT)
+	overlook_tween.tween_property(self, "v_offset", original_v_offset, 0.1).set_ease(Tween.EASE_IN_OUT)
+	
+	await overlook_tween.finished
+	
+	overlooking = false
 
 func smooth_look_at(target_pos: Vector3, duration: float = 0.18) -> void:
 	if player.camera_tween:
@@ -70,6 +98,6 @@ func _process(delta: float):
 		v_offset = randf_range(-shake_intensity, shake_intensity)
 
 		shake_intensity = lerp(shake_intensity, 0.0, delta * shake_decay_speed)
-	elif not breath_tween or not breath_tween.is_running():
-		h_offset = 0.0
-		v_offset = 0.0
+	elif not breath_tween or not breath_tween.is_running() and not overlooking:
+		h_offset = original_h_offset
+		v_offset = original_v_offset

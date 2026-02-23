@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().quit()
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE and Input.is_action_just_pressed("player_action3"):
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE and Input.is_action_just_pressed("player_action2"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta: float) -> void:
@@ -52,6 +52,8 @@ func _process(delta: float) -> void:
 	
 	$PivotCamera.rotation.x = lerp($PivotCamera.rotation.x, target_camera_rotation.x, 1.0 - exp(-25.0 * delta))
 	$PivotCamera.rotation.y = lerp($PivotCamera.rotation.y, target_camera_rotation.y, 1.0 - exp(-25.0 * delta))
+	
+	$PivotCameraMock.global_position = $PivotCameraMock.global_position.lerp($PivotCamera/SpringArm3D/Camera3D/CameraMarker.global_position, 0.01)
 	
 func _state(delta: float) -> void:
 	var input = Input.get_vector("player_left", "player_right", "player_up", "player_down")

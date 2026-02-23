@@ -6,6 +6,9 @@ func frame(delta: float, input: Vector3) -> void:
 	if not input.is_zero_approx():
 		machine.shift($"../Walk")
 		return
+	if player.input_queued("player_action2"):
+		machine.shift($"../Throw")
+		return
 	
 	if player.is_floor():
 		player.velocity.x = move_toward(player.velocity.x, 0, FRICTION * delta * 10)

@@ -196,7 +196,7 @@ transform = Transform3D(-0.6790519, 0, 1.8811934, 0, 2, 0, -1.8811934, 0, -0.679
 [node name="garbageBag8" parent="level1" unique_id=176383501 instance=ExtResource("20_yxtlv")]
 transform = Transform3D(-0.68726707, 0.11218366, 1.8748543, -0.29042774, 1.9660697, -0.22410397, -1.8556174, -0.3492645, -0.65931666, -17.431759, 1.9856458, -50.053364)
 
-[node name="dumpster" parent="level1" unique_id=1659169932 instance=ExtResource("21_5hair")]
+[node name="dumpster" parent="level1" unique_id=1609351350 instance=ExtResource("21_5hair")]
 transform = Transform3D(4.452918, 0, -1.1931559, 0, 4.61, 0, 1.1931559, 0, 4.452918, -13.321876, 0.53014547, -62.157894)
 
 [node name="Grass" parent="level1" unique_id=1316004581 instance=ExtResource("18_iwa5b")]

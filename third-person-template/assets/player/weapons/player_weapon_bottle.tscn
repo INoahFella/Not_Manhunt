@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://yum63ja5vum3"]
+
+[ext_resource type="PackedScene" uid="uid://ht50w4ja3o7n" path="res://assets/props/bottle.glb" id="1_cia8x"]
+[ext_resource type="Script" uid="uid://bn7cx4yldtol5" path="res://assets/player/weapons/player_weapon_bottle.gd" id="1_pd6il"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cia8x"]
+rough = true
+absorbent = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pd6il"]
+size = Vector3(0.40382, 1.4974949, 0.403825)
+
+[node name="PlayerWeaponBottle" type="RigidBody3D" unique_id=884510810]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_cia8x")
+gravity_scale = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_pd6il")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1375403802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008057237, -1.9073486e-06)
+shape = SubResource("BoxShape3D_pd6il")
+
+[node name="bottle" parent="." unique_id=700812799 instance=ExtResource("1_cia8x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.69280493, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
