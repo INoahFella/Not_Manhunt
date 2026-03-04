@@ -115,7 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999999, 2.9802322e-08, 0, -2.9802322e-08,
 [node name="Animated Human" parent="PivotCharacter" unique_id=1256690594 instance=ExtResource("7_tb4ck")]
 transform = Transform3D(-0.55, 0, -4.8082526e-08, 0, 0.55, 0, 4.8082526e-08, 0, -0.55, 0, 0, 0)
 
-[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(1256690594, 842534777) index="0" unique_id=1239917041]
+[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(1256690594, 1192616045) index="0" unique_id=1984638227]
 bones/0/rotation = Quaternion(-0.038762707, -0.37025863, -0.015707169, 0.9279867)
 bones/1/position = Vector3(1.2184666e-11, 0.0045643304, -0.000278749)
 bones/1/rotation = Quaternion(0.01672724, 0.040830277, -0.005846293, 0.9990091)
@@ -236,7 +236,7 @@ bones/46/position = Vector3(1.3083671e-09, 0.0030639714, -1.5785483e-10)
 bones/46/rotation = Quaternion(1.4600587e-08, -1.623878e-08, 2.56124e-08, 1)
 bones/46/scale = Vector3(1, 1, 1)
 
-[node name="Human_Mesh" parent="PivotCharacter/Animated Human/Human Armature/Skeleton3D" index="0" unique_id=630873483]
+[node name="Human_Mesh" parent="PivotCharacter/Animated Human/Human Armature/Skeleton3D" index="0" unique_id=2023867772]
 layers = 512
 
 [node name="PivotWeapon" type="Marker3D" parent="PivotCharacter" unique_id=1055741740]

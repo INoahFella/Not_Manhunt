@@ -7,28 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://1fsct2m3vp3u" path="res://game/player/Animated Human.fbx" id="4_bie4y"]
 [ext_resource type="Script" uid="uid://cxy8blak1ivya" path="res://game/enemy/states/state_patrol.gd" id="4_gxvxc"]
 [ext_resource type="Resource" uid="uid://3igl75qlgok8" path="res://game/enemy/sounds/idle.tres" id="5_nn1vc"]
-[ext_resource type="Script" uid="uid://bw10n62nmdfdy" path="res://game/enemy/states/state_purse.gd" id="7_0yryo"]
+[ext_resource type="Script" uid="uid://bw10n62nmdfdy" path="res://game/enemy/states/state_pursue.gd" id="7_0yryo"]
 [ext_resource type="Script" uid="uid://wk4wvxdfrvgf" path="res://game/enemy/states/state_hold.gd" id="7_4bu0d"]
-[ext_resource type="Script" uid="uid://b0ukf0jrxku56" path="res://game/enemy/states/state_sweep.gd" id="8_aki7j"]
 [ext_resource type="Resource" uid="uid://1mvnw1kkr1ft" path="res://game/enemy/sounds/alert.tres" id="10_hrbkf"]
-
-[sub_resource type="GDScript" id="GDScript_x63uy"]
-script/source = "extends EnemyState
-
-const STEP_SOUND = preload(\"res://game/enemy/sounds/step_sfx_enemy.tres\")
-
-func play_step():
-	SFX.play(STEP_SOUND, enemy)
-"
-
-[sub_resource type="GDScript" id="GDScript_0tmw4"]
-script/source = "extends EnemyState
-
-const STEP_SOUND = preload(\"res://game/enemy/sounds/step_sfx_enemy.tres\")
-
-func play_step():
-	SFX.play(STEP_SOUND, enemy)
-"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5hair"]
 radius = 1.0727539
@@ -120,18 +101,6 @@ ANIMATION_NAME = "Human Armature|Idle"
 ANIMATION_NAME_STRESSED = "Human Armature|Idle"
 ANIMATION_BLEND = 0.1
 ENTER_SOUNDS = Array[ExtResource("4_aki7j")]([ExtResource("10_hrbkf")])
-
-[node name="Sweep" type="Node" parent="Machine" unique_id=1521934703]
-script = ExtResource("8_aki7j")
-ANIMATION_ENABLED = true
-ANIMATION_NAME = "Human Armature|Run"
-ANIMATION_BLEND = 0.2
-
-[node name="Run" type="Node" parent="Machine" unique_id=144904264]
-script = SubResource("GDScript_x63uy")
-
-[node name="Walk" type="Node" parent="Machine" unique_id=897153313]
-script = SubResource("GDScript_0tmw4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=774562463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5603337, 0)

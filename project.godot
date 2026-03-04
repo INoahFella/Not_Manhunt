@@ -28,7 +28,7 @@ buses/default_bus_layout="uid://bnofx5rhbnmfn"
 
 [autoload]
 
-Game="*res://Game.gd"
+Game="*res://game/script/Game.gd"
 SFX="*res://game/script/audio/sfx.gd"
 EnemyAi="*uid://qywitxnhkjhr"
 

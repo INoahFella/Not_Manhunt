@@ -1,6 +1,6 @@
 extends Node
 
-var config: EnemyConfig = preload("res://game/enemy/enemy_config.tres")
+var config: EnemyConfig = preload("uid://cu8fhcw6uythd")
 var _pending: Dictionary = {}
 
 func _ready():

@@ -8,7 +8,7 @@ static var index: int = 1
 func enter() -> void:
 	var curve = patrol_path.curve
 	var target_pos = patrol_path.to_global(curve.get_point_position(index))
-	
+
 	enemy.move(target_pos)
 	await enemy.moved
 	if not current: return

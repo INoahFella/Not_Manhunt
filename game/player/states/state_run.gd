@@ -1,7 +1,7 @@
 extends State
 
 const SPEED = 20.0
-const STEP_SOUND = preload("res://game/player/sounds/step_sfx.tres")
+const STEP_SOUND = preload("uid://dd6pl8mico4ab")
 
 @onready var pivot_character = $"../../PivotCharacter"
 @onready var pivot_character_mock = $"../../PivotCharacterMock"
@@ -20,11 +20,11 @@ func frame(_delta: float, input: Vector3) -> void:
 	if not player.is_floor():
 		machine.shift($"../Fall")
 		return
-		
+
 	player.velocity.x = input.x * SPEED * player.damping
 	player.velocity.z = input.z * SPEED * player.damping
 	player.move_and_slide()
-	
+
 	if not input.is_zero_approx():
 		pivot_character_mock.look_at(player.global_position + input)
 		pivot_character.rotation.y = lerp_angle(pivot_character.rotation.y, pivot_character_mock.rotation.y, 0.5)
@@ -32,6 +32,6 @@ func frame(_delta: float, input: Vector3) -> void:
 func leave() -> void:
 	camera.breath()
 	camera.unzoom()
-	
+
 func play_step() -> void:
 	SFX.play(STEP_SOUND, player)
