@@ -37,7 +37,7 @@ func _ready() -> void:
 	state_machine.enemy = self
 	state_machine.animate = state_animate
 	state_machine.shift(state_default)
-	
+
 	SFX.emitted.connect(_sound)
 
 func _physics_process(delta: float) -> void:
@@ -130,7 +130,7 @@ func _look(delta: float) -> void:
 	dir.y = 0.0
 	if dir.length_squared() < 0.001: return
 	$PivotCharacter.basis = $PivotCharacter.basis.slerp(Basis.looking_at(dir.normalized()), look_speed * delta)
-	if $"PivotCharacter/Animated Human/Human Armature/Skeleton3D/BoneAttachment3D/MeshInstance3D/Area3D".overlaps_body(Game.get_player()):
+	if $PivotCharacter/Eyes/ShapeCast3D.is_colliding():
 		spotted.emit(Game.get_player().global_position)
 
 func _move(_delta: float) -> void:
@@ -161,7 +161,7 @@ func _move(_delta: float) -> void:
 				next = move_target_path[1]
 			else:
 				next = move_target
-				
+
 	look(next)
 
 	var desired = global_position.direction_to(next) * move_speed * get_stress_scale()
@@ -196,10 +196,10 @@ func _on_spotted(at: Vector3) -> void:
 	snapshot.seconds_since_seen = 0.0
 	snapshot.dist_to_last_known = global_position.distance_to(at)
 	snapshot.player_distance = snapshot.dist_to_last_known
-	
+
 	if state_machine.state != $Machine/Pursue:
 		state_machine.shift($Machine/Pursue)
-		
+
 func _on_machine_on_enter(state: EnemyState) -> void:
 	if not state.ANIMATION_ENABLED: return
 
@@ -209,7 +209,7 @@ func _on_machine_on_enter(state: EnemyState) -> void:
 
 func look(at: Vector3):
 	look_target = at
-	
+
 func move(to: Vector3) -> void:
 	var map := get_world_3d().get_navigation_map()
 	move_target = NavigationServer3D.map_get_closest_point(map, to)
@@ -232,7 +232,7 @@ func is_stressed():
 
 func _exit_tree() -> void:
 	EnemyAi.clear_enemy(self)
-	
+
 	if agent_rid.is_valid():
 		NavigationServer3D.free_rid(agent_rid)
 
@@ -257,7 +257,8 @@ func debug_draw_belief() -> void:
 
 		get_tree().current_scene.add_child(_debug_belief_mesh)
 
-		$"PivotCharacter/Animated Human/Human Armature/Skeleton3D/BoneAttachment3D/MeshInstance3D".material_override = _debug_belief_mat
+		$PivotCharacter/Eyes/MeshInstance3D1.material_override = _debug_belief_mat
+		$PivotCharacter/Eyes/MeshInstance3D2.material_override = _debug_belief_mat
 
 	var r := snapshot.belief_radius
 	if r <= 0.0:

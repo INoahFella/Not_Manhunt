@@ -31,6 +31,6 @@ func shift_forced(to: EnemyState):
 	state = to
 
 func frame(delta: float):
-	if state: 
+	if state:
 		state.frame(delta)
 		on_frame.emit()
