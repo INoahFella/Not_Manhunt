@@ -12,6 +12,7 @@ func enter() -> void:
 	
 	enemy.move(target_pos)
 	await enemy.moved
+	if state != self: return
 	machine.shift($"../Idle")
 
 func frame(delta: float) -> void:

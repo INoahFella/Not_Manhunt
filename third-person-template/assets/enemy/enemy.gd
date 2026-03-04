@@ -56,7 +56,7 @@ func _gravity(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 func _snapshot(_delta: float) -> void:
-	if Engine.get_physics_frames() % int(ProjectSettings.get_setting("physics/common/physics_ticks_per_second") / 2) != 0: return
+	if Engine.get_physics_frames() % int(ProjectSettings.get_setting("physics/common/physics_ticks_per_second")) != 0: return
 	if not snapshot: snapshot = EnemySnapshot.new()
 
 	var player = Game.get_player()
@@ -179,6 +179,9 @@ func _move(_delta: float) -> void:
 
 func _on_heard(_at: Vector3) -> void:
 	snapshot.stress_level += 0.33
+	snapshot.belief_confidence += 0.5
+	if state_machine.state != $Machine/Pursue:
+		state_machine.shift($Machine/Hold)
 	#if EnemyAi.is_executing(self): return
 	#var decided = EnemyAi.decide(self, snapshot)
 	#if decided == "hold": state_machine.shift($Machine/Hold)
@@ -193,12 +196,10 @@ func _on_spotted(at: Vector3) -> void:
 	snapshot.seconds_since_seen = 0.0
 	snapshot.dist_to_last_known = global_position.distance_to(at)
 	snapshot.player_distance = snapshot.dist_to_last_known
-	#snapshot.seconds_since_seen = 0.0
-	#snapshot.belief_center = Game.get_player().global_position
-	#snapshot.belief_radius = 1.5
-	#snapshot.belief_confidence = 1.0
-	#print("pursue!!")
-
+	
+	if state_machine.state != $Machine/Pursue:
+		state_machine.shift($Machine/Pursue)
+		
 func _on_machine_on_enter(state: EnemyState) -> void:
 	if not state.ANIMATION_ENABLED: return
 
@@ -219,6 +220,9 @@ func move(to: Vector3) -> void:
 	NavigationServer3D.agent_set_velocity(agent_rid, Vector3.ZERO)
 	NavigationServer3D.agent_set_max_speed(agent_rid, move_speed * get_stress_scale())
 
+func move_cancel() -> void:
+	move_target = Vector3.INF
+
 func get_stress_scale():
 	var stress = clamp(snapshot.stress_level, 0.0, 1.0)
 	var speed_scale = lerp(0.85, 1.5, stress)
@@ -234,6 +238,8 @@ func _exit_tree() -> void:
 
 var _debug_belief_mesh: MeshInstance3D
 var _debug_belief_immediate: ImmediateMesh
+var _debug_belief_mat: StandardMaterial3D
+
 func debug_draw_belief() -> void:
 	if not snapshot:
 		return
@@ -241,20 +247,26 @@ func debug_draw_belief() -> void:
 	if not _debug_belief_mesh:
 		_debug_belief_immediate = ImmediateMesh.new()
 
-		var mat := StandardMaterial3D.new()
-		mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		mat.albedo_color = Color(1.0, 0.2, 0.2, 0.5)
+		_debug_belief_mat = StandardMaterial3D.new()
+		_debug_belief_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		_debug_belief_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
 		_debug_belief_mesh = MeshInstance3D.new()
 		_debug_belief_mesh.mesh = _debug_belief_immediate
-		_debug_belief_mesh.material_override = mat
+		_debug_belief_mesh.material_override = _debug_belief_mat
 
 		get_tree().current_scene.add_child(_debug_belief_mesh)
+
+		$"PivotCharacter/Animated Human/Human Armature/Skeleton3D/BoneAttachment3D/MeshInstance3D".material_override = _debug_belief_mat
 
 	var r := snapshot.belief_radius
 	if r <= 0.0:
 		_debug_belief_immediate.clear_surfaces()
 		return
+
+	var conf = clamp(snapshot.belief_confidence, 0.0, 1.0)
+	var col := Color(0.15, 1.0, 0.15, 0.5).lerp(Color(1.0, 0.15, 0.15, 0.5), conf)
+	_debug_belief_mat.albedo_color = col
 
 	var center := snapshot.belief_center
 	var segments := 32

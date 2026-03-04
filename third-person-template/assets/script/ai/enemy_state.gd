@@ -10,6 +10,7 @@ class_name EnemyState extends Node
 @export var ENTER_SOUNDS: Array[SoundEffect]
 @export var LEAVE_SOUNDS: Array[SoundEffect]
 
+var id: int
 var machine: EnemyMachine:
 	get(): return get_parent() as EnemyMachine
 var animate: AnimationPlayer:
@@ -18,6 +19,8 @@ var state: EnemyState:
 	get(): return machine.state as EnemyState
 var enemy: Enemy:
 	get(): return machine.enemy as Enemy
+var current: bool:
+	get(): return machine.state_id == id
 
 func enter() -> void: pass
 	

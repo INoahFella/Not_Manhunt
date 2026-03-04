@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://1mvnw1kkr1ft"]
 
 [ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://assets/script/audio/sound_effect.gd" id="1_c5inu"]
-[ext_resource type="AudioStream" uid="uid://dp04k6uy8ijj2" path="res://assets/audio/untitled - Track 5.wav" id="2_c3f42"]
+[ext_resource type="AudioStream" uid="uid://n6cgkmkvh7w3" path="res://assets/audio/untitled - Track 5.wav" id="2_c3f42"]
+[ext_resource type="AudioStream" uid="uid://cork1tkqm0xwj" path="res://assets/audio/untitled - Track 6.wav" id="3_vp76u"]
+[ext_resource type="AudioStream" uid="uid://ip7loadpjg6m" path="res://assets/audio/untitled - Track 7.wav" id="4_boevn"]
+[ext_resource type="AudioStream" uid="uid://nefqww8k00v4" path="res://assets/audio/untitled - Track 8.wav" id="5_b2qs2"]
 
 [resource]
 script = ExtResource("1_c5inu")
-streams = Array[AudioStream]([ExtResource("2_c3f42")])
-volume = 3.0
+identifier = "enemy_voice_1"
+streams = Array[AudioStream]([ExtResource("2_c3f42"), ExtResource("3_vp76u"), ExtResource("4_boevn"), ExtResource("5_b2qs2")])
+volume = 10.0
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

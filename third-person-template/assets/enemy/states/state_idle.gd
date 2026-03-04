@@ -5,7 +5,7 @@ var next_state_time: int = 0
 func enter() -> void:
 	next_state_time = Time.get_ticks_msec() + randi_range(2500, 6000)
 	if randf() > 0.5:
-		$"../../PivotCharacter/Animated Human/Marker3D/AnimationPlayer".play("swap")
+		$"../../PivotCharacter/Animated Human/Marker3D/AnimationPlayer".play("swap", 0.1, enemy.get_stress_scale())
 
 func frame(_delta: float) -> void:
 	if Time.get_ticks_msec() >= next_state_time:

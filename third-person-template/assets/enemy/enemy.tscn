@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://assets/script/audio/sound_effect.gd" id="4_aki7j"]
 [ext_resource type="PackedScene" uid="uid://1fsct2m3vp3u" path="res://assets/player/Animated Human.fbx" id="4_bie4y"]
 [ext_resource type="Script" uid="uid://cxy8blak1ivya" path="res://assets/enemy/states/state_patrol.gd" id="4_gxvxc"]
-[ext_resource type="Resource" uid="uid://3igl75qlgok8" path="res://assets/enemy/sounds/idle_sfx_1.tres" id="5_nn1vc"]
+[ext_resource type="Resource" uid="uid://3igl75qlgok8" path="res://assets/enemy/sounds/idle.tres" id="5_nn1vc"]
+[ext_resource type="Script" uid="uid://bw10n62nmdfdy" path="res://assets/enemy/states/state_purse.gd" id="7_0yryo"]
 [ext_resource type="Script" uid="uid://wk4wvxdfrvgf" path="res://assets/enemy/states/state_hold.gd" id="7_4bu0d"]
 [ext_resource type="Script" uid="uid://b0ukf0jrxku56" path="res://assets/enemy/states/state_sweep.gd" id="8_aki7j"]
+[ext_resource type="Resource" uid="uid://1mvnw1kkr1ft" path="res://assets/enemy/sounds/alert.tres" id="10_hrbkf"]
 
 [sub_resource type="GDScript" id="GDScript_x63uy"]
 script/source = "extends EnemyState
@@ -38,14 +40,6 @@ bottom_radius = 8.0
 height = 35.0
 radial_segments = 8
 rings = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aki7j"]
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 0, 0, 0.21000001)
-distance_fade_mode = 2
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aki7j"]
 points = PackedVector3Array(-8, -17.5, 0, -5.6570086, -17.5, -5.6570086, -5.6570086, -17.5, 5.655442, -0.1158967, 17.5, 0, 0, -17.5, -8, -0.081440926, 17.5, -0.081440926, 0, 17.5, -0.1158967, 0, -17.5, 8, 0, 17.5, 0.11433029, -0.081440926, 17.5, 0.07987499, 5.655442, -17.5, -5.6570086, 0.07987499, 17.5, -0.081440926, 5.655442, -17.5, 5.655442, 0.07987499, 17.5, 0.07987499, 8, -17.5, 0, 0.11433029, 17.5, 0)
@@ -113,11 +107,19 @@ ANIMATION_NAME = "Human Armature|Walk"
 ANIMATION_NAME_STRESSED = "Human Armature|Run"
 ANIMATION_BLEND = 0.1
 
+[node name="Pursue" type="Node" parent="Machine" unique_id=754850011]
+script = ExtResource("7_0yryo")
+ANIMATION_ENABLED = true
+ANIMATION_NAME = "Human Armature|Run"
+ANIMATION_NAME_STRESSED = "Human Armature|Run"
+ANIMATION_BLEND = 0.1
+
 [node name="Hold" type="Node" parent="Machine" unique_id=1722920149]
 script = ExtResource("7_4bu0d")
-ANIMATION_ENABLED = true
 ANIMATION_NAME = "Human Armature|Idle"
-ANIMATION_BLEND = 0.2
+ANIMATION_NAME_STRESSED = "Human Armature|Idle"
+ANIMATION_BLEND = 0.1
+ENTER_SOUNDS = Array[ExtResource("4_aki7j")]([ExtResource("10_hrbkf")])
 
 [node name="Sweep" type="Node" parent="Machine" unique_id=1521934703]
 script = ExtResource("8_aki7j")
@@ -193,7 +195,6 @@ bone_idx = 5
 transform = Transform3D(-0.01303601, 0.000365718, -0.0010203124, 0.0009060436, -0.0030814293, -0.01268053, -0.00059487415, -0.012707596, 0.0030455024, -0.004876903, 0.05969867, 0.22305068)
 mesh = SubResource("CylinderMesh_nn1vc")
 skeleton = NodePath("../../../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_aki7j")
 
 [node name="Area3D" type="Area3D" parent="PivotCharacter/Animated Human/Human Armature/Skeleton3D/BoneAttachment3D/MeshInstance3D" unique_id=2120610032]
 collision_mask = 16

@@ -4,6 +4,7 @@ signal on_enter(state: EnemyState)
 signal on_leave(state: EnemyState)
 signal on_frame()
 
+var state_id = 0
 var state: EnemyState
 var animate: AnimationPlayer
 var enemy: Enemy
@@ -17,7 +18,9 @@ func shift(to: EnemyState):
 		state.leave()
 		SFX.play_all(state.LEAVE_SOUNDS, enemy)
 	on_enter.emit(to)
+	state_id += 1
 	state = to
+	state.id = state_id
 	snapshot_frozen = enemy.snapshot.duplicate(true)
 	to.enter()
 	SFX.play_all(state.ENTER_SOUNDS, enemy)
