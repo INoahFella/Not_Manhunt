@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://cu8fhcw6uythd"]
-
-[ext_resource type="Script" uid="uid://x5fwebvl6ig6" path="res://assets/script/ai/types/enemy_config.gd" id="1_npleu"]
-
-[resource]
-script = ExtResource("1_npleu")
-features = null
-metadata/_custom_type_script = "uid://x5fwebvl6ig6"

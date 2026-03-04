@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://but75ugmnaswe"]
+
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_gypxa"]
+[ext_resource type="AudioStream" uid="uid://b564xqqnxbuyp" path="res://assets/audio/step.mp3" id="2_y55p2"]
+
+[resource]
+script = ExtResource("1_gypxa")
+identifier = "enemy_step_concrete"
+streams = Array[AudioStream]([ExtResource("2_y55p2")])
+volume = 5.0
+pitch_modulation = 1.2
+metadata/_custom_type_script = "uid://dcyi0d7pgmllh"
