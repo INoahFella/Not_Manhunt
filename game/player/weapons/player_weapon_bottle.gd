@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const break_sound = preload("res://game/player/sounds/bottle_sfx.tres")
+const break_sound = preload("uid://cw0q2ark88iws")
 
 func _on_body_entered(body: Node) -> void:
 	if body is not Player:

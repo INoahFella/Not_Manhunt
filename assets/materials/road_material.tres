@@ -33,4 +33,5 @@ shader_parameter/light_bands = 16.0
 shader_parameter/dither_size = 1.0
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
 script = ExtResource("1_n2aky")
+id = 1
 metadata/_custom_type_script = "uid://c882y1sfipvc0"

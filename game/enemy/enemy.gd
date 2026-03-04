@@ -87,14 +87,16 @@ func _snapshot(_delta: float) -> void:
 
 	debug_draw_belief()
 
-func _sound(type: String, pos: Vector3, strength: float) -> void:
+func _sound(type: String, pos: Vector3, sound: SoundEffect) -> void:
+	var strength = sound.stealth_strength
+
 	if type != "Player": return
 	if strength <= 0: strength = 1.0
 
 	var d = global_position.distance_to(pos)
 	var t = clamp((d - hear_min) / (hear_max - hear_min), 0.0, 1.0)
 	var falloff = 1.0 - t
-	var s = clamp(strength, 0.0, 1.0) * (falloff * falloff)
+	var s = clamp(strength, 0.0, 1.0) * (falloff * falloff) * (1.0 - Game.get_player().sneakiness * sound.stealth_impact)
 
 	if s <= 0.08: return
 

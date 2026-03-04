@@ -7,6 +7,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("2_ikw54")
+shader_parameter/use_albedo_texture = true
 shader_parameter/albedo_texture = ExtResource("3_25ya2")
 shader_parameter/albedo_color = Color(0.5481984, 0.6953982, 1, 1)
 shader_parameter/uv_scale = Vector3(10, 10, 10)
@@ -14,6 +15,12 @@ shader_parameter/uv_offset = Vector3(0, 0, 0)
 shader_parameter/uv_rotation = 0.0
 shader_parameter/metalness = 0.0
 shader_parameter/roughness = 1.0
+shader_parameter/use_heightmap = false
+shader_parameter/height_range = 0.1
+shader_parameter/is_billboard = false
+shader_parameter/use_decal = false
+shader_parameter/decal_intensity = 1.0
+shader_parameter/decal_scale = 1.0
 shader_parameter/grain_intensity = 0.0030000001425
 shader_parameter/grain_size = 1.0
 shader_parameter/grain_fps = 4.0

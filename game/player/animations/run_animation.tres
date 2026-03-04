@@ -277,3 +277,20 @@ tracks/38/path = NodePath("Human Armature/Skeleton3D:RightHandIndex3")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = PackedFloat32Array(0, 1, 0.013872583, 0.0019559544, 0.0016895985, 0.99990046, 0.29166666, 1, 0.013872579, 0.0019559702, 0.001689606, 0.99990046, 0.33333334, 1, 0.01946517, 0.0019571397, 0.0024130442, 0.9998057, 0.375, 1, 0.029623464, 0.0019594978, 0.0037269618, 0.99955225, 0.41666666, 1, 0.03642525, 0.0019606655, 0.0046068314, 0.99932384, 0.45833334, 1, 0.033423375, 0.0019599372, 0.004218577, 0.9994305, 0.5, 1, 0.021605607, 0.0019576526, 0.0026898917, 0.99976104, 0.5416667, 1, 0.01387257, 0.0019559509, 0.0016895989, 0.99990046, 0.625, 1, 0.013872598, 0.0019559646, 0.0016895995, 0.9999004)
+tracks/39/type = "method"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("../../Machine/Walk")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step"
+}, {
+"args": [],
+"method": &"play_step"
+}]
+}

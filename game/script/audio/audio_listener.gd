@@ -5,7 +5,7 @@ signal audio_silent
 
 @export var threshold_db: float = -55.0
 @export var analyzer_bus_name: String = "Dialog"
-@export var open_duration: float = 0.1 
+@export var open_duration: float = 0.1
 
 var _was_active: bool = false
 var _spectrum: AudioEffectInstance
@@ -14,16 +14,16 @@ var _cooldown_timer: float = 0.0
 func _ready():
 	bus = analyzer_bus_name
 	var bus_index = AudioServer.get_bus_index(analyzer_bus_name)
-	
+
 	if bus_index == -1:
 		set_process(false)
 		return
-		
+
 	_spectrum = AudioServer.get_bus_effect_instance(bus_index, 0)
 
 func _process(delta):
 	var is_peaking = false
-	
+
 	if playing:
 		var magnitude = _spectrum.get_magnitude_for_frequency_range(0, 20000).length()
 		var energy_db = linear_to_db(magnitude)

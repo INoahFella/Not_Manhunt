@@ -74,7 +74,7 @@ shape = SubResource("CapsuleShape3D_5hair")
 [node name="Animated Human" parent="PivotCharacter" unique_id=933908995 instance=ExtResource("10_32c0l")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(933908995, 644441505) index="0" unique_id=1944366236]
+[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(933908995, 196589788) index="0" unique_id=149162237]
 bones/0/position = Vector3(-0.0005151802, 0.03806242, 0.00025659)
 bones/0/rotation = Quaternion(-0.036302816, -0.36805362, -0.013658716, 0.92899525)
 bones/1/position = Vector3(1.2184666e-11, 0.0045643304, -0.000278749)

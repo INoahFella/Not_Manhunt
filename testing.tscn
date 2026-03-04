@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cgv210uwuvfdf" path="res://assets/audio/Intro.wav" id="1_n3efn"]
 [ext_resource type="Texture2D" uid="uid://1eatjnk7xslr" path="res://assets/decals/graftest_1.png" id="4_w078t"]
 [ext_resource type="PackedScene" uid="uid://b51g8scf3fprn" path="res://game/player/player.tscn" id="4_ybq6y"]
+[ext_resource type="Script" uid="uid://ce0i0vjtecbo5" path="res://game/script/surface/surface_map.gd" id="5_nrmhc"]
 [ext_resource type="Texture2D" uid="uid://b87o0x8lykyr7" path="res://assets/decals/graftest_2.png" id="5_qqc7k"]
 [ext_resource type="PackedScene" uid="uid://bi1ml7rarrkf0" path="res://assets/props/tree_3.glb" id="7_iwa5b"]
 [ext_resource type="PackedScene" uid="uid://hbo74gdh6w8l" path="res://assets/props/lamp.dae" id="8_fd6ls"]
@@ -105,27 +106,39 @@ autoplay = true
 navigation_mesh = SubResource("NavigationMesh_nrmhc")
 navigation_layers = 3
 
-[node name="level1" parent="NavigationRegion3D" unique_id=1035707841 instance=ExtResource("22_s5rnx")]
+[node name="Map" parent="NavigationRegion3D" unique_id=1035707841 instance=ExtResource("22_s5rnx")]
 
-[node name="tree_5" parent="NavigationRegion3D/level1" unique_id=961627663 instance=ExtResource("7_iwa5b")]
+[node name="SurfaceMap" type="Node" parent="NavigationRegion3D/Map" unique_id=1680964902]
+script = ExtResource("5_nrmhc")
+output_png_base_path = "res://game/baked/level1_surface_id"
+floor_step = 50.0
+floor_origin_y = -1.0
+baked_origin_xz = Vector2(-195.77658, -302.7034)
+baked_size_px = Vector2i(412, 415)
+baked_floor_count = 2
+metadata/_custom_type_script = "uid://ce0i0vjtecbo5"
+
+[node name="Props" type="Node3D" parent="NavigationRegion3D" unique_id=237903679]
+
+[node name="tree_5" parent="NavigationRegion3D/Props" unique_id=961627663 instance=ExtResource("7_iwa5b")]
 transform = Transform3D(2.275, 0, 0, 0, 2.275, 0, 0, 0, 2.275, 15.313656, 0.18480492, -20.628796)
 
-[node name="tree_6" parent="NavigationRegion3D/level1" unique_id=253829684 instance=ExtResource("7_iwa5b")]
+[node name="tree_6" parent="NavigationRegion3D/Props" unique_id=253829684 instance=ExtResource("7_iwa5b")]
 transform = Transform3D(1.9062623, 0, -1.277963, 0.18474679, 2.2708926, 0.27557588, 1.2645386, -0.33177313, 1.886238, 15.313656, -0.23952246, -43.833908)
 
-[node name="tree_7" parent="NavigationRegion3D/level1" unique_id=400223810 instance=ExtResource("8_n3efn")]
+[node name="tree_7" parent="NavigationRegion3D/Props" unique_id=400223810 instance=ExtResource("8_n3efn")]
 transform = Transform3D(1.835, 0, 0, 0, 1.835, 0, 0, 0, 1.835, 15.156025, 0.17241645, -32.611534)
 
-[node name="lamp" parent="NavigationRegion3D/level1" unique_id=1641791136 instance=ExtResource("8_fd6ls")]
+[node name="lamp" parent="NavigationRegion3D/Props" unique_id=1641791136 instance=ExtResource("8_fd6ls")]
 transform = Transform3D(-0.85, 0, 1.2834644e-07, 0, 0.85, 0, -1.2834644e-07, 0, -0.85, 12.005271, 0.665866, -53.797466)
 
-[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/level1/lamp" unique_id=434909107]
+[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/Props/lamp" unique_id=434909107]
 transform = Transform3D(-3.7016773, 0, -30.778204, 0, 31.000004, 0, 30.778204, 0, -3.7016773, 9.452448, 29.731304, -0.08795929)
 modulate = Color(1, 1, 1, 0.30800003)
 billboard = 1
 texture = ExtResource("10_2yngh")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/level1/lamp" unique_id=25119987]
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/Props/lamp" unique_id=25119987]
 transform = Transform3D(-1, -6.6002374e-15, 1.5099582e-07, 1.5099582e-07, -4.3711392e-08, 1, 0, 1, 4.3711392e-08, 3.5599422, 26.66588, -53.797462)
 top_level = true
 light_color = Color(1, 1, 0.9333369, 1)
@@ -133,16 +146,16 @@ spot_range = 45.0
 spot_attenuation = 0.5
 spot_angle = 50.0
 
-[node name="lamp4" parent="NavigationRegion3D/level1" unique_id=1384221716 instance=ExtResource("8_fd6ls")]
+[node name="lamp4" parent="NavigationRegion3D/Props" unique_id=1384221716 instance=ExtResource("8_fd6ls")]
 transform = Transform3D(-0.85, 0, 1.2834644e-07, 0, 0.85, 0, -1.2834644e-07, 0, -0.85, 12.005271, 0.665866, -114.79747)
 
-[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/level1/lamp4" unique_id=904433411]
+[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/Props/lamp4" unique_id=904433411]
 transform = Transform3D(-3.7016764, 0, -30.7782, 0, 31, 0, 30.7782, 0, -3.7016764, 9.452446, 29.731297, -0.08795929)
 modulate = Color(1, 1, 1, 0.30800003)
 billboard = 1
 texture = ExtResource("10_2yngh")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/level1/lamp4" unique_id=2025840402]
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/Props/lamp4" unique_id=2025840402]
 transform = Transform3D(-1, -6.6002374e-15, 1.5099582e-07, 1.5099582e-07, -4.3711392e-08, 1, 0, 1, 4.3711392e-08, 3.5599422, 26.66588, -114.79746)
 top_level = true
 light_color = Color(1, 1, 0.9333369, 1)
@@ -150,10 +163,10 @@ spot_range = 45.0
 spot_attenuation = 0.5
 spot_angle = 50.0
 
-[node name="lamp2" parent="NavigationRegion3D/level1" unique_id=1225159564 instance=ExtResource("8_fd6ls")]
+[node name="lamp2" parent="NavigationRegion3D/Props" unique_id=1225159564 instance=ExtResource("8_fd6ls")]
 transform = Transform3D(0.85000014, 0, -5.4037088e-08, 0, 0.85000014, 0, 5.4037088e-08, 0, 0.85000014, -11.994729, 0.665866, -29.797466)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/level1/lamp2" unique_id=1814974154]
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/Props/lamp2" unique_id=1814974154]
 transform = Transform3D(1, -8.742277e-08, -1.5099582e-07, 1.5099582e-07, -4.3711392e-08, 1, -8.742278e-08, -1, -4.3711378e-08, -3.5493994, 26.665882, -29.797472)
 top_level = true
 light_color = Color(1, 1, 0.9333369, 1)
@@ -161,16 +174,16 @@ spot_range = 45.0
 spot_attenuation = 0.5
 spot_angle = 50.0
 
-[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/level1/lamp2" unique_id=794088040]
+[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/Props/lamp2" unique_id=794088040]
 transform = Transform3D(-3.7016764, 0, -30.7782, 0, 31, 0, 30.7782, 0, -3.7016764, 9.452446, 29.731297, -0.08795929)
 modulate = Color(1, 1, 1, 0.30800003)
 billboard = 1
 texture = ExtResource("10_2yngh")
 
-[node name="lamp3" parent="NavigationRegion3D/level1" unique_id=1973997513 instance=ExtResource("8_fd6ls")]
+[node name="lamp3" parent="NavigationRegion3D/Props" unique_id=1973997513 instance=ExtResource("8_fd6ls")]
 transform = Transform3D(0.85000014, 0, -5.4037088e-08, 0, 0.85000014, 0, 5.4037088e-08, 0, 0.85000014, -11.994729, 0.665866, -86.79747)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/level1/lamp3" unique_id=1921806455]
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/Props/lamp3" unique_id=1921806455]
 transform = Transform3D(1, -8.742277e-08, -1.5099582e-07, 1.5099582e-07, -4.3711392e-08, 1, -8.742278e-08, -1, -4.3711378e-08, -3.5493994, 26.665882, -86.79748)
 top_level = true
 light_color = Color(1, 1, 0.9333369, 1)
@@ -178,68 +191,68 @@ spot_range = 45.0
 spot_attenuation = 0.5
 spot_angle = 50.0
 
-[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/level1/lamp3" unique_id=2088176010]
+[node name="light_flare3" type="Sprite3D" parent="NavigationRegion3D/Props/lamp3" unique_id=2088176010]
 transform = Transform3D(-3.7016764, 0, -30.7782, 0, 31, 0, 30.7782, 0, -3.7016764, 9.452446, 29.731297, -0.08795929)
 modulate = Color(1, 1, 1, 0.30800003)
 billboard = 1
 texture = ExtResource("10_2yngh")
 
-[node name="Decal" type="Decal" parent="NavigationRegion3D/level1" unique_id=263884922]
+[node name="Decal" type="Decal" parent="NavigationRegion3D/Props" unique_id=263884922]
 transform = Transform3D(0.4862744, 0.8738062, -7.639056e-08, -1.9106855e-15, -8.742278e-08, -1, -0.8738062, 0.4862744, -4.251146e-08, -19.007946, 9.161419, -16.340036)
 size = Vector3(18.549805, 10, 20.730469)
 texture_albedo = ExtResource("5_qqc7k")
 
-[node name="Decal2" type="Decal" parent="NavigationRegion3D/level1" unique_id=1901824611]
+[node name="Decal2" type="Decal" parent="NavigationRegion3D/Props" unique_id=1901824611]
 transform = Transform3D(0.4862744, 0.8738062, -7.639056e-08, -1.9106855e-15, -8.742278e-08, -1, -0.8738062, 0.4862744, -4.251146e-08, -18.687523, 18.695152, -40.688507)
 size = Vector3(18.549805, 10, 20.730469)
 texture_albedo = ExtResource("4_w078t")
 
-[node name="blueBin4" parent="NavigationRegion3D/level1" unique_id=1886019913 instance=ExtResource("15_iwa5b")]
+[node name="blueBin4" parent="NavigationRegion3D/Props" unique_id=1886019913 instance=ExtResource("15_iwa5b")]
 transform = Transform3D(3.2841485, 0, -0.879985, 0, 3.4000008, 0, 0.879985, 0, 3.2841485, 11.630137, -0.004528761, -38.43093)
 
-[node name="blueBin" parent="NavigationRegion3D/level1" unique_id=1602318348 instance=ExtResource("15_iwa5b")]
+[node name="blueBin" parent="NavigationRegion3D/Props" unique_id=1602318348 instance=ExtResource("15_iwa5b")]
 transform = Transform3D(3.3343716, -0.2255607, 0.62537634, 0.22947589, 3.3922474, -4.0228914e-09, -0.62395036, 0.042208456, 3.3419924, 11.630136, 0.006587982, -36.323185)
 
-[node name="blueBin5" parent="NavigationRegion3D/level1" unique_id=226589460 instance=ExtResource("15_iwa5b")]
+[node name="blueBin5" parent="NavigationRegion3D/Props" unique_id=226589460 instance=ExtResource("15_iwa5b")]
 transform = Transform3D(2.9444885, -1.7000011, 2.2690198e-08, -0.11062296, -0.19160448, -3.392797, 1.696399, 2.9382467, -0.22124591, 11.490406, 1.0733433, -43.827873)
 
-[node name="garbageBag5" parent="NavigationRegion3D/level1" unique_id=2027095329 instance=ExtResource("20_yxtlv")]
+[node name="garbageBag5" parent="NavigationRegion3D/Props" unique_id=2027095329 instance=ExtResource("20_yxtlv")]
 transform = Transform3D(0.6116233, 0, 1.9041841, 0, 2, 0, -1.9041841, 0, 0.6116233, -19.327318, 0.003025055, -50.974766)
 
-[node name="garbageBag6" parent="NavigationRegion3D/level1" unique_id=654908370 instance=ExtResource("20_yxtlv")]
+[node name="garbageBag6" parent="NavigationRegion3D/Props" unique_id=654908370 instance=ExtResource("20_yxtlv")]
 transform = Transform3D(-0.6790519, 0, 1.8811934, 0, 2, 0, -1.8811934, 0, -0.6790519, -15.828415, 0.003025055, -48.42599)
 
-[node name="garbageBag7" parent="NavigationRegion3D/level1" unique_id=1121306785 instance=ExtResource("20_yxtlv")]
+[node name="garbageBag7" parent="NavigationRegion3D/Props" unique_id=1121306785 instance=ExtResource("20_yxtlv")]
 transform = Transform3D(-0.6790519, 0, 1.8811934, 0, 2, 0, -1.8811934, 0, -0.6790519, -15.698866, 0.003025055, -52.212803)
 
-[node name="garbageBag8" parent="NavigationRegion3D/level1" unique_id=176383501 instance=ExtResource("20_yxtlv")]
+[node name="garbageBag8" parent="NavigationRegion3D/Props" unique_id=176383501 instance=ExtResource("20_yxtlv")]
 transform = Transform3D(-0.68726707, 0.11218366, 1.8748543, -0.29042774, 1.9660697, -0.22410397, -1.8556174, -0.3492645, -0.65931666, -17.431759, 1.9856458, -50.053364)
 
-[node name="dumpster" parent="NavigationRegion3D/level1" unique_id=1609351350 instance=ExtResource("21_5hair")]
+[node name="dumpster" parent="NavigationRegion3D/Props" unique_id=1609351350 instance=ExtResource("21_5hair")]
 transform = Transform3D(4.452918, 0, -1.1931559, 0, 4.61, 0, 1.1931559, 0, 4.452918, -13.321876, 0.53014547, -62.157894)
 
-[node name="Grass" parent="NavigationRegion3D/level1" unique_id=1316004581 instance=ExtResource("18_iwa5b")]
+[node name="Grass" parent="NavigationRegion3D/Props" unique_id=1316004581 instance=ExtResource("18_iwa5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0726967, 1.6889211, -44.576393)
 
-[node name="Grass2" parent="NavigationRegion3D/level1" unique_id=1088147733 instance=ExtResource("18_iwa5b")]
+[node name="Grass2" parent="NavigationRegion3D/Props" unique_id=1088147733 instance=ExtResource("18_iwa5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8660927, 1.623088, -31.265823)
 
-[node name="Grass3" parent="NavigationRegion3D/level1" unique_id=839576379 instance=ExtResource("18_iwa5b")]
+[node name="Grass3" parent="NavigationRegion3D/Props" unique_id=839576379 instance=ExtResource("18_iwa5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.049462, 1.9731532, -55.104706)
 
-[node name="Grass4" parent="NavigationRegion3D/level1" unique_id=1472195171 instance=ExtResource("18_iwa5b")]
+[node name="Grass4" parent="NavigationRegion3D/Props" unique_id=1472195171 instance=ExtResource("18_iwa5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.58906, 1.9399825, -32.650707)
 
-[node name="Grass5" parent="NavigationRegion3D/level1" unique_id=1621591077 instance=ExtResource("18_iwa5b")]
+[node name="Grass5" parent="NavigationRegion3D/Props" unique_id=1621591077 instance=ExtResource("18_iwa5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.288781, 1.9673518, -44.43772)
 
-[node name="Decal3" type="Decal" parent="NavigationRegion3D/level1" unique_id=206637782]
+[node name="Decal3" type="Decal" parent="NavigationRegion3D/Props" unique_id=206637782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.423201, 0.6443386, -9.326124)
 size = Vector3(5, 1.4075928, 5)
 texture_albedo = ExtResource("18_n3efn")
 cull_mask = 1048573
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="NavigationRegion3D/level1/Decal3" unique_id=1483934641]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="NavigationRegion3D/Props/Decal3" unique_id=1483934641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5468216, 0)
 layers = 2
 cast_shadow = 0
@@ -250,19 +263,19 @@ fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_yxtlv")
 draw_pass_1 = SubResource("QuadMesh_nrmhc")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/level1/Decal3" unique_id=389319550]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Props/Decal3" unique_id=389319550]
 stream = SubResource("AudioStreamRandomizer_yxtlv")
 unit_size = 5.0
 autoplay = true
 bus = &"Sfx"
 
-[node name="Decal4" type="Decal" parent="NavigationRegion3D/level1" unique_id=1306524120]
+[node name="Decal4" type="Decal" parent="NavigationRegion3D/Props" unique_id=1306524120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.312738, 0.6443391, -69.43413)
 size = Vector3(5, 1.4075928, 5)
 texture_albedo = ExtResource("18_n3efn")
 cull_mask = 1048573
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="NavigationRegion3D/level1/Decal4" unique_id=536888780]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="NavigationRegion3D/Props/Decal4" unique_id=536888780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5468216, 0)
 layers = 2
 cast_shadow = 0
@@ -273,31 +286,31 @@ fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_yxtlv")
 draw_pass_1 = SubResource("QuadMesh_nrmhc")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/level1/Decal4" unique_id=321352837]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Props/Decal4" unique_id=321352837]
 stream = SubResource("AudioStreamRandomizer_yxtlv")
 unit_size = 5.0
 autoplay = true
 bus = &"Sfx"
 
-[node name="tire" parent="NavigationRegion3D/level1" unique_id=1498753042 instance=ExtResource("21_nrmhc")]
+[node name="tire" parent="NavigationRegion3D/Props" unique_id=1498753042 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -7.5961885, 0.5171843, -62.92267)
 
-[node name="tire2" parent="NavigationRegion3D/level1" unique_id=1496707960 instance=ExtResource("21_nrmhc")]
+[node name="tire2" parent="NavigationRegion3D/Props" unique_id=1496707960 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -7.974607, 2.0761185, -63.03959)
 
-[node name="tire3" parent="NavigationRegion3D/level1" unique_id=1344831281 instance=ExtResource("21_nrmhc")]
+[node name="tire3" parent="NavigationRegion3D/Props" unique_id=1344831281 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -7.309208, 3.866756, -62.792763)
 
-[node name="tire4" parent="NavigationRegion3D/level1" unique_id=1972836221 instance=ExtResource("21_nrmhc")]
+[node name="tire4" parent="NavigationRegion3D/Props" unique_id=1972836221 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -7.5961885, 5.6211042, -62.92267)
 
-[node name="tire5" parent="NavigationRegion3D/level1" unique_id=973807509 instance=ExtResource("21_nrmhc")]
+[node name="tire5" parent="NavigationRegion3D/Props" unique_id=973807509 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -9.269843, 0.5171843, -58.983414)
 
-[node name="tire6" parent="NavigationRegion3D/level1" unique_id=1450171954 instance=ExtResource("21_nrmhc")]
+[node name="tire6" parent="NavigationRegion3D/Props" unique_id=1450171954 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -9.648262, 2.0761185, -59.100334)
 
-[node name="tire7" parent="NavigationRegion3D/level1" unique_id=1133225253 instance=ExtResource("21_nrmhc")]
+[node name="tire7" parent="NavigationRegion3D/Props" unique_id=1133225253 instance=ExtResource("21_nrmhc")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -8.982862, 3.866756, -58.853508)
 
 [node name="Player" parent="." unique_id=891888201 instance=ExtResource("4_ybq6y")]
