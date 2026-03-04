@@ -1,5 +1,7 @@
 class_name Sfx extends Node
 
+signal emitted(type: String, position: Vector3, strength: float)
+
 var sounds: Dictionary[NodePath, AudioStreamPlayer3D] = {}
 
 func play_all(sound_effects: Array[SoundEffect], where: Node3D) -> void:
@@ -45,6 +47,8 @@ func play(sound_effect: SoundEffect, where: Node3D) -> void:
 			
 		node.add_child(player)
 		sounds.set(where.get_node("SFX/" + sound_effect.identifier).get_path(), player)
+
+	emitted.emit(sound_effect.bus, where.global_position, sound_effect.volume)
 
 func stop(identifier, where: Node3D) -> void:
 	if has_player(identifier, where):

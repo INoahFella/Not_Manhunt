@@ -9,4 +9,5 @@ identifier = "bottle_break"
 streams = Array[AudioStream]([ExtResource("2_kw0c0")])
 volume = 25.0
 pitch_modulation = 1.2
+bus = "Player"
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

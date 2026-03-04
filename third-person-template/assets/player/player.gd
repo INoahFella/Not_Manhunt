@@ -30,7 +30,7 @@ func _ready() -> void:
 	state_camera.breath()
 	
 func _physics_process(delta: float) -> void:
-	if enabled:
+	if enabled and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_input_queue()
 		_camera(delta)
 		_state(delta)
@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().quit()
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE and Input.is_action_just_pressed("player_action2"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

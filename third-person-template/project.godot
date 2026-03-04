@@ -30,6 +30,7 @@ buses/default_bus_layout="uid://bnofx5rhbnmfn"
 
 Game="*res://Game.gd"
 SFX="*res://assets/script/audio/sfx.gd"
+EnemyAi="*uid://qywitxnhkjhr"
 
 [dialogic]
 
@@ -244,6 +245,13 @@ escape={
 3d_physics/layer_4="Enemies"
 3d_physics/layer_5="Player"
 3d_physics/layer_6="Player Camera"
+
+[navigation]
+
+3d/default_cell_size=3.0
+3d/default_cell_height=3.0
+3d/default_edge_connection_margin=5.0
+3d/default_link_connection_radius=5.0
 
 [physics]
 

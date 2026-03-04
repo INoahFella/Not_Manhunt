@@ -8,4 +8,5 @@ script = ExtResource("1_62amk")
 identifier = "step_concrete"
 streams = Array[AudioStream]([ExtResource("2_pdm2m")])
 pitch_modulation = 1.2
+bus = "Player"
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

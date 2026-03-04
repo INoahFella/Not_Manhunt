@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://bx21w50rhf4wt"]
+
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://assets/script/audio/sound_effect.gd" id="1_318ax"]
+[ext_resource type="AudioStream" uid="uid://cmo1uhwqavx42" path="res://assets/audio/untitled - Track 2.wav" id="2_oefj7"]
+[ext_resource type="AudioStream" uid="uid://cmmhkqyp7v2ml" path="res://assets/audio/untitled - Track 3.wav" id="3_re4p8"]
+
+[resource]
+script = ExtResource("1_318ax")
+identifier = "enemy_hold"
+streams = Array[AudioStream]([ExtResource("2_oefj7"), ExtResource("3_re4p8")])
+volume = 3.0
+metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

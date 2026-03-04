@@ -1,5 +1,8 @@
 extends Node
 
+func _ready() -> void:
+	randomize()
+
 func get_root(): return get_node("/root/Level")
 func get_root_node(path: NodePath): return get_root().get_node(path) if get_root().has_node(path) else null
 func get_player(): return get_root_node("Player") as Player

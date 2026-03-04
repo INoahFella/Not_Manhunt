@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Intro.wav-713a3a7b57960f6b06f4a3188d1b0af6.sa
 
 [params]
 
-force/8_bit=true
-force/mono=true
+force/8_bit=false
+force/mono=false
 force/max_rate=true
 force/max_rate_hz=22050.0
 edit/trim=false
