@@ -28,8 +28,8 @@ buses/default_bus_layout="uid://bnofx5rhbnmfn"
 
 [autoload]
 
-Game="*res://game/script/Game.gd"
-SFX="*res://game/script/audio/sfx.gd"
+Game="*res://game/script/game.gd"
+SFX="*res://game/script/audio/sound_effects.gd"
 EnemyAi="*uid://qywitxnhkjhr"
 
 [dialogic]

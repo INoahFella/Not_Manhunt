@@ -11,7 +11,7 @@ func play_all(sound_effects: Array[SoundEffect], where: Node3D) -> void:
 
 func play(sound_effect: SoundEffect, where: Node3D) -> void:
 	var id = str(sound_effect.get_instance_id())
-		
+
 	if has_player(id, where):
 		var player = get_player(id, where)
 		player.bus = sound_effect.bus
@@ -33,7 +33,7 @@ func play(sound_effect: SoundEffect, where: Node3D) -> void:
 		player.unit_size = sound_effect.size
 		player.pitch_scale = sound_effect.pitch
 		player.max_polyphony = 5
-		
+
 		var node: Node3D
 		if not where.has_node("SFX"):
 			node = Node3D.new()
@@ -41,7 +41,7 @@ func play(sound_effect: SoundEffect, where: Node3D) -> void:
 			where.add_child(node)
 		else:
 			node = where.get_node("SFX")
-			
+
 		node.add_child(player)
 		sounds.set(where.get_node("SFX/" + id).get_path(), player)
 
@@ -50,7 +50,7 @@ func play(sound_effect: SoundEffect, where: Node3D) -> void:
 func play_surface(sound_surface: SoundSurface, where: Node3D) -> void:
 	var surface_id = Game.get_surface_map().get_surface_id(where.global_position)
 	var sound_effect = sound_surface.find_sound(surface_id)
-	
+
 	play(sound_effect, where)
 
 func stop(identifier, where: Node3D) -> void:

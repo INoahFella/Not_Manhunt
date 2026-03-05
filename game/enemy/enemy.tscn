@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://wk4wvxdfrvgf" path="res://game/enemy/states/state_hold.gd" id="7_4bu0d"]
 [ext_resource type="PackedScene" uid="uid://viq6ho3jh1i0" path="res://game/enemy/Animated Human.fbx" id="10_32c0l"]
 [ext_resource type="Resource" uid="uid://1mvnw1kkr1ft" path="res://game/enemy/sounds/alert.tres" id="10_hrbkf"]
+[ext_resource type="PackedScene" uid="uid://db534dsdqjxgu" path="res://game/enemy/human.glb" id="11_at1sk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5hair"]
 radius = 1.0727539
@@ -73,8 +74,9 @@ shape = SubResource("CapsuleShape3D_5hair")
 
 [node name="Animated Human" parent="PivotCharacter" unique_id=2106858943 instance=ExtResource("10_32c0l")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
 
-[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(2106858943, 1728114516) index="0" unique_id=293118535]
+[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(2106858943, 196589788) index="0" unique_id=149162237]
 bones/0/rotation = Quaternion(-0.038762707, -0.37025863, -0.015707169, 0.9279867)
 bones/1/position = Vector3(1.2184666e-11, 0.0045643304, -0.000278749)
 bones/1/rotation = Quaternion(0.01672724, 0.040830277, -0.005846293, 0.9990091)
@@ -205,8 +207,12 @@ transform = Transform3D(-0.014424031, 0.0008885854, -0.00029955996, 0.0009314135
 remote_path = NodePath("../../../../../Eyes")
 update_scale = false
 
+[node name="human" parent="PivotCharacter" unique_id=644799280 instance=ExtResource("11_at1sk")]
+transform = Transform3D(-2.84, 0, 4.2882806e-07, 0, 2.84, 0, -4.2882806e-07, 0, -2.84, 0, 0, 0)
+
 [node name="Eyes" type="Marker3D" parent="PivotCharacter" unique_id=979989147]
 transform = Transform3D(0.999943, -0.0018823746, -0.010506633, 0.0019107276, 1.0000063, 0.0026921327, 0.010501195, -0.0027121177, 0.99994105, 0.0026081651, 4.689792, -0.4087368)
+visible = false
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="PivotCharacter/Eyes" unique_id=1040272409]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -227,3 +233,4 @@ mesh = SubResource("CylinderMesh_32c0l")
 [connection signal="on_enter" from="Machine" to="." method="_on_machine_on_enter"]
 
 [editable path="PivotCharacter/Animated Human"]
+[editable path="PivotCharacter/human"]

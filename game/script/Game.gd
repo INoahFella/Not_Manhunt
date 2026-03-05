@@ -10,5 +10,4 @@ func get_camera(): return get_player().state_camera
 func get_sfx(): return get_root_node("SFX")
 func get_spawn(): return get_root_node("PlayerSpawn")
 
-func get_map(): return get_root_node("NavigationRegion3D/Map") as Node3D
-func get_surface_map(): return get_map().get_node("SurfaceMap") as SurfaceMap
+func get_map(): return get_root_node("NavigationRegion3D/Map") as Map
