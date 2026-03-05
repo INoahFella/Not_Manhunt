@@ -29,9 +29,7 @@ func enter() -> void:
 	if not current: return
 	animate.play("Human Armature|Idle")
 	await get_tree().create_timer(randf_range(3, 6)).timeout
-
 	if not current: return
-
 	machine.shift($"../Idle")
 
 func leave() -> void:

@@ -1,36 +1,35 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://1mvnw1kkr1ft"]
 
 [ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_c5inu"]
-[ext_resource type="Script" uid="uid://bgcwlufecaalj" path="res://game/script/audio/sound_stream.gd" id="2_bj5b6"]
-[ext_resource type="AudioStream" uid="uid://n6cgkmkvh7w3" path="res://assets/audio/untitled - Track 5.wav" id="2_c3f42"]
-[ext_resource type="AudioStream" uid="uid://cork1tkqm0xwj" path="res://assets/audio/untitled - Track 6.wav" id="3_vp76u"]
-[ext_resource type="AudioStream" uid="uid://ip7loadpjg6m" path="res://assets/audio/untitled - Track 7.wav" id="4_boevn"]
+[ext_resource type="AudioStream" uid="uid://dx0k4tbx5kfk1" path="res://assets/audio/ememy/untitled - Track 1.wav" id="2_d6jrr"]
+[ext_resource type="AudioStream" uid="uid://5rmpr8jojcqe" path="res://assets/audio/ememy/untitled - Track 2.wav" id="3_ycpu6"]
+[ext_resource type="AudioStream" uid="uid://ckbcopdoaw4ni" path="res://assets/audio/ememy/untitled - Track 3.wav" id="4_tyl4b"]
 [ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="4_wla6k"]
-[ext_resource type="AudioStream" uid="uid://nefqww8k00v4" path="res://assets/audio/untitled - Track 8.wav" id="5_b2qs2"]
+[ext_resource type="AudioStream" uid="uid://c01c0o8w4h2m7" path="res://assets/audio/ememy/untitled - Track 4.wav" id="5_gh65c"]
+[ext_resource type="AudioStream" uid="uid://b8cm0sner820d" path="res://assets/audio/ememy/untitled - Track 5.wav" id="6_3dbe3"]
+[ext_resource type="AudioStream" uid="uid://wmmthkflaa66" path="res://assets/audio/ememy/untitled - Track 6.wav" id="7_od223"]
+[ext_resource type="AudioStream" uid="uid://cma3dn2cdibee" path="res://assets/audio/ememy/untitled - Track 7.wav" id="8_kq7k5"]
+[ext_resource type="AudioStream" uid="uid://bgqn71fhihsn8" path="res://assets/audio/ememy/untitled - Track 8.wav" id="9_23wxn"]
+[ext_resource type="AudioStream" uid="uid://dlr3c3mikvwav" path="res://assets/audio/ememy/untitled - Track 9.wav" id="10_ta0rw"]
+[ext_resource type="AudioStream" uid="uid://dlexgbcw7req5" path="res://assets/audio/ememy/untitled - Track 10.wav" id="11_rmtax"]
 
-[sub_resource type="Resource" id="Resource_wla6k"]
-script = ExtResource("2_bj5b6")
-stream = ExtResource("2_c3f42")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
-[sub_resource type="Resource" id="Resource_oa3jk"]
-script = ExtResource("2_bj5b6")
-stream = ExtResource("3_vp76u")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
-[sub_resource type="Resource" id="Resource_1dm3h"]
-script = ExtResource("2_bj5b6")
-stream = ExtResource("4_boevn")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
-[sub_resource type="Resource" id="Resource_g4vkq"]
-script = ExtResource("2_bj5b6")
-stream = ExtResource("5_b2qs2")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bj5b6"]
+playback_mode = 2
+streams_count = 10
+stream_0/stream = ExtResource("2_d6jrr")
+stream_1/stream = ExtResource("3_ycpu6")
+stream_2/stream = ExtResource("4_tyl4b")
+stream_3/stream = ExtResource("5_gh65c")
+stream_4/stream = ExtResource("6_3dbe3")
+stream_5/stream = ExtResource("7_od223")
+stream_6/stream = ExtResource("8_kq7k5")
+stream_7/stream = ExtResource("9_23wxn")
+stream_8/stream = ExtResource("10_ta0rw")
+stream_9/stream = ExtResource("11_rmtax")
 
 [resource]
 script = ExtResource("1_c5inu")
-identifier = "enemy_voice_1"
-streams = Array[ExtResource("2_bj5b6")]([SubResource("Resource_wla6k"), SubResource("Resource_oa3jk"), SubResource("Resource_1dm3h"), SubResource("Resource_g4vkq")])
-volume = 10.0
+stream = SubResource("AudioStreamRandomizer_bj5b6")
+size = 25.0
+enemy_perception = 0.0
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

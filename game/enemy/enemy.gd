@@ -20,7 +20,7 @@ var move_target_path: PackedVector3Array
 var move_target_velocity: Vector3
 var look_target: Vector3
 
-var move_speed: float = 10.0
+var move_speed: float = 8.0
 var move_speed_stressed: float = 22.0
 var look_speed: float = 10.0
 
@@ -68,7 +68,7 @@ func _snapshot(_delta: float) -> void:
 	snapshot.seconds_since_last_noise = min(snapshot.seconds_since_last_noise + 1.0, 999.0)
 	snapshot.seconds_since_seen = min(snapshot.seconds_since_seen + 1.0, 999.0)
 	snapshot.player_distance = my_pos.distance_to(player_pos)
-	snapshot.player_visible = lerp(snapshot.player_visible, 0.0, 0.02)
+	snapshot.player_visible = lerp(snapshot.player_visible, 0.0, 0.08)
 	snapshot.dist_to_last_known = my_pos.distance_to(snapshot.belief_center)
 
 	var allies = 0.0
@@ -88,15 +88,14 @@ func _snapshot(_delta: float) -> void:
 	debug_draw_belief()
 
 func _sound(type: String, pos: Vector3, sound: SoundEffect) -> void:
-	var strength = sound.stealth_strength
+	var strength = sound.enemy_perception
 
 	if type != "Player": return
-	if strength <= 0: strength = 1.0
 
 	var d = global_position.distance_to(pos)
 	var t = clamp((d - hear_min) / (hear_max - hear_min), 0.0, 1.0)
 	var falloff = 1.0 - t
-	var s = clamp(strength, 0.0, 1.0) * (falloff * falloff) * (1.0 - Game.get_player().sneakiness * sound.stealth_impact)
+	var s = clamp(strength, 0.0, 10.0) * (falloff * falloff) * (1.0 - Game.get_player().sneakiness * sound.stealth_dampen)
 
 	if s <= 0.08: return
 
@@ -184,10 +183,6 @@ func _on_heard(_at: Vector3) -> void:
 	snapshot.belief_confidence += 0.5
 	if state_machine.state != $Machine/Pursue:
 		state_machine.shift($Machine/Hold)
-	#if EnemyAi.is_executing(self): return
-	#var decided = EnemyAi.decide(self, snapshot)
-	#if decided == "hold": state_machine.shift($Machine/Hold)
-	#if decided == "sweep": state_machine.shift($Machine/Sweep)
 
 func _on_spotted(at: Vector3) -> void:
 	snapshot.stress_level += 1.0

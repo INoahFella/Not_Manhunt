@@ -1,20 +1,12 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://cw0q2ark88iws"]
 
 [ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_sd2um"]
-[ext_resource type="Script" uid="uid://bgcwlufecaalj" path="res://game/script/audio/sound_stream.gd" id="2_avhkt"]
 [ext_resource type="AudioStream" uid="uid://dd4cnf4qy3tla" path="res://assets/audio/bottle.wav" id="3_r6twx"]
 [ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="4_avhkt"]
 
-[sub_resource type="Resource" id="Resource_6dsp1"]
-script = ExtResource("2_avhkt")
-stream = ExtResource("3_r6twx")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
 [resource]
 script = ExtResource("1_sd2um")
-identifier = "bottle_break"
-streams = Array[ExtResource("2_avhkt")]([SubResource("Resource_6dsp1")])
-size = 10.0
-pitch_modulation = 1.2
+stream = ExtResource("3_r6twx")
+size = 25.0
 bus = "Player"
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

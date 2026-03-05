@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://cmdp5hsu21o1v"]
+
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_s6jsl"]
+[ext_resource type="AudioStream" uid="uid://ukf7gvd6w50" path="res://assets/audio/step_squishy.mp3" id="2_s6jsl"]
+[ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="3_dxpqv"]
+
+[resource]
+script = ExtResource("1_s6jsl")
+stream = ExtResource("2_s6jsl")
+size = 2.5
+bus = "Player"
+stealth_dampen = 0.2
+metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

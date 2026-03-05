@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckbcopdoaw4ni"
+path="res://.godot/imported/untitled - Track 3.wav-cd45a68d9e2eeba9b861167e79ad1316.sample"
+
+[deps]
+
+source_file="res://assets/audio/ememy/untitled - Track 3.wav"
+dest_files=["res://.godot/imported/untitled - Track 3.wav-cd45a68d9e2eeba9b861167e79ad1316.sample"]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=true
+force/max_rate_hz=11025.0
+edit/trim=false
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

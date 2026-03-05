@@ -1,31 +1,19 @@
 [gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://3igl75qlgok8"]
 
 [ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_0035f"]
-[ext_resource type="AudioStream" uid="uid://bsfsuwwy2fakp" path="res://assets/audio/untitled - Track 1.wav" id="2_0035f"]
-[ext_resource type="Script" uid="uid://bgcwlufecaalj" path="res://game/script/audio/sound_stream.gd" id="2_vuvo5"]
-[ext_resource type="AudioStream" uid="uid://dwg2m7vl1ivwk" path="res://assets/audio/untitled - Track 2.wav" id="3_m3qjy"]
+[ext_resource type="AudioStream" uid="uid://dxa0wbkhq8uk5" path="res://assets/audio/ememy/untitled - Track 11.wav" id="2_rihsy"]
+[ext_resource type="AudioStream" uid="uid://gdnm14vb7w6h" path="res://assets/audio/ememy/untitled - Track 12.wav" id="3_vuvo5"]
 [ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="4_gme82"]
-[ext_resource type="AudioStream" uid="uid://b8hrob25g1wo6" path="res://assets/audio/untitled - Track 3.wav" id="4_jvj7g"]
 
-[sub_resource type="Resource" id="Resource_gme82"]
-script = ExtResource("2_vuvo5")
-stream = ExtResource("2_0035f")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
-[sub_resource type="Resource" id="Resource_vkges"]
-script = ExtResource("2_vuvo5")
-stream = ExtResource("3_m3qjy")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
-
-[sub_resource type="Resource" id="Resource_63wxt"]
-script = ExtResource("2_vuvo5")
-stream = ExtResource("4_jvj7g")
-metadata/_custom_type_script = "uid://bgcwlufecaalj"
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vuvo5"]
+streams_count = 2
+stream_0/stream = ExtResource("2_rihsy")
+stream_1/stream = ExtResource("3_vuvo5")
 
 [resource]
 script = ExtResource("1_0035f")
-identifier = "enemy_voice_2"
-streams = Array[ExtResource("2_vuvo5")]([SubResource("Resource_gme82"), SubResource("Resource_vkges"), SubResource("Resource_63wxt")])
-volume = 3.0
+stream = SubResource("AudioStreamRandomizer_vuvo5")
+size = 25.0
 chance = 0.25
+enemy_perception = 0.0
 metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

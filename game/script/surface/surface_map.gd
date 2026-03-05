@@ -1,41 +1,19 @@
-@tool class_name SurfaceMap extends Node
-
-@export_tool_button("Bake")
-var bake_button = _bake
-
-@export_category("Output")
-@export var output_png_base_path: String = "res://surface_id"
+class_name SurfaceMap extends Node
 
 @export_category("Bake")
 @export var cell_size: float = 1.0
 @export_range(-1.0, 1.0, 0.01) var min_up_normal_y: float = 0.35
 @export var bounds_padding: float = 0.0
 
-@export_category("Floors")
-@export var floor_step: float = 3.0
-@export var floor_origin_y: float = 0.0
-@export_range(1, 64) var max_floor_layers: int = 8
-
 @export_storage var baked_origin_xz: Vector2 = Vector2.ZERO
 @export_storage var baked_size_px: Vector2i = Vector2i.ZERO
-@export_storage var baked_floor_count: int = 0
-var baked_floor_min_index: int = 0
-
-class LayerData:
-	var best_y: PackedFloat32Array
-	var best_id: PackedInt32Array
-
-var baked_images: Array[Image] = []
+@export_storage var baked_ids: PackedByteArray = PackedByteArray()
 
 func _ready() -> void:
-	baked_images.clear()
-	for i in range(baked_floor_count):
-		var path := "%s_f%02d.png" % [output_png_base_path, i + 1]
-		var img := Image.load_from_file(path)
-		baked_images.append(img)
+	_bake()
 
 func get_surface_id(world_pos: Vector3) -> int:
-	if baked_images.is_empty():
+	if baked_ids.is_empty() or baked_size_px.x <= 0 or baked_size_px.y <= 0:
 		return 0
 
 	var px := int(floor((world_pos.x - baked_origin_xz.x) / cell_size))
@@ -44,19 +22,7 @@ func get_surface_id(world_pos: Vector3) -> int:
 	if px < 0 or py < 0 or px >= baked_size_px.x or py >= baked_size_px.y:
 		return 0
 
-	var floor_idx := int(round((world_pos.y - floor_origin_y) / floor_step))
-	var floor_layer := floor_idx - baked_floor_min_index
-
-	if floor_layer < 0 or floor_layer >= baked_images.size():
-		return 0
-
-	var img := baked_images[floor_layer]
-	if img == null:
-		return 0
-
-	var col := img.get_pixel(px, py)
-
-	return int(round(col.r * 255.0))
+	return int(baked_ids[py * baked_size_px.x + px])
 
 func _bake() -> void:
 	if not Engine.is_editor_hint():
@@ -66,13 +32,9 @@ func _bake() -> void:
 		push_error("cell_size must be > 0")
 		return
 
-	if floor_step <= 0.0:
-		push_error("floor_step must be > 0")
-		return
-
 	var target := get_parent() as Node3D
 	if target == null:
-		push_error("target_root_path is invalid.")
+		push_error("SurfaceMap must be a child of a Node3D (target root).")
 		return
 
 	var meshes := _collect_meshes(target)
@@ -95,14 +57,20 @@ func _bake() -> void:
 	var h := int(ceil(bounds.size.z / cell_size))
 
 	if w <= 0 or h <= 0:
-		push_error("Computed image size is invalid: %dx%d" % [w, h])
+		push_error("Computed bake size is invalid: %dx%d" % [w, h])
 		return
 
-	var layers: Dictionary = {}
-	var has_any_floor := false
-	var floor_min := 0
-	var floor_max := -1
+	var best_y := PackedFloat32Array()
+	var best_id := PackedByteArray()
+	best_y.resize(w * h)
+	best_id.resize(w * h)
+
+	for i in range(w * h):
+		best_y[i] = INF
+		best_id[i] = 0
+
 	var tri_considered := 0
+	var updates := 0
 
 	for mi in meshes:
 		if mi == null:
@@ -119,6 +87,8 @@ func _bake() -> void:
 			if sm == null:
 				continue
 
+			var sid = clamp(sm.id, 1, 255)
+
 			var arrays := mesh.surface_get_arrays(surface_idx)
 			if arrays.is_empty():
 				continue
@@ -126,8 +96,6 @@ func _bake() -> void:
 			var verts: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
 			if verts.is_empty():
 				continue
-
-			var sid = clamp(sm.id, 1, 255)
 
 			var indices_any = arrays[Mesh.ARRAY_INDEX]
 			if indices_any is PackedInt32Array and (indices_any as PackedInt32Array).size() > 0:
@@ -139,16 +107,8 @@ func _bake() -> void:
 					var v2 := xf * verts[indices[t * 3 + 2]]
 
 					if abs(_tri_normal_y(v0, v1, v2)) >= min_up_normal_y:
-						var used_floor := _raster_tri_to_layer(v0, v1, v2, origin, w, h, sid, layers)
-						if used_floor != -1:
-							if not has_any_floor:
-								has_any_floor = true
-								floor_min = used_floor
-								floor_max = used_floor
-							else:
-								floor_min = min(floor_min, used_floor)
-								floor_max = max(floor_max, used_floor)
-						tri_considered += 1
+						updates += _raster_tri_lowest(v0, v1, v2, origin, w, h, sid, best_y, best_id)
+					tri_considered += 1
 			else:
 				var tri_count2 := verts.size() / 3
 				for t2 in range(tri_count2):
@@ -157,70 +117,17 @@ func _bake() -> void:
 					var v2b := xf * verts[t2 * 3 + 2]
 
 					if abs(_tri_normal_y(v0b, v1b, v2b)) >= min_up_normal_y:
-						var used_floor2 := _raster_tri_to_layer(v0b, v1b, v2b, origin, w, h, sid, layers)
-						if used_floor2 != -1:
-							if not has_any_floor:
-								has_any_floor = true
-								floor_min = used_floor2
-								floor_max = used_floor2
-							else:
-								floor_min = min(floor_min, used_floor2)
-								floor_max = max(floor_max, used_floor2)
-						tri_considered += 1
+						updates += _raster_tri_lowest(v0b, v1b, v2b, origin, w, h, sid, best_y, best_id)
+					tri_considered += 1
 
 	baked_origin_xz = origin
 	baked_size_px = Vector2i(w, h)
+	baked_ids = best_id
 
-	if not has_any_floor or layers.is_empty():
-		baked_floor_count = 0
-		baked_floor_min_index = 0
-		push_warning("No floor-ish triangles wrote any pixels (no layers).")
-		return
-
-	var desired_max := floor_min + (max_floor_layers - 1)
-	for key in layers.keys():
-		var k := int(key)
-		if k < floor_min or k > desired_max:
-			layers.erase(key)
-
-	floor_max = min(floor_max, desired_max)
-
-	baked_floor_min_index = floor_min
-	baked_floor_count = (floor_max - floor_min + 1)
-
-	for f in range(floor_min, floor_max + 1):
-		var layer := layers.get(f) as LayerData
-		if layer == null:
-			_write_bw_floor_png(f, w, h, PackedInt32Array())
-		else:
-			_write_bw_floor_png(f, w, h, layer.best_id)
-
-	print("Surface maps baked per floor.")
-	print("Saved base: ", output_png_base_path)
+	print("Surface bytes baked (single lowest layer).")
 	print("origin_xz: ", baked_origin_xz, " cell_size: ", cell_size, " size_px: ", baked_size_px)
-	print("floor_origin_y: ", floor_origin_y, " floor_step: ", floor_step)
-	print("floors: ", baked_floor_count, " world_floor_index_range: [", baked_floor_min_index, "..", baked_floor_min_index + baked_floor_count - 1, "]")
-	print("Triangles considered: ", tri_considered)
-
-func _write_bw_floor_png(floor_idx: int, w: int, h: int, best_id: PackedInt32Array) -> void:
-	var img := Image.create(w, h, false, Image.FORMAT_RGB8)
-	img.fill(Color(0, 0, 0))
-
-	if best_id.size() == w * h:
-		for y in range(h):
-			for x in range(w):
-				var idx := y * w + x
-				var id := best_id[idx]
-				if id != 0:
-					var v := float(id) / 255.0
-					img.set_pixel(x, y, Color(v, v, v))
-
-	var file_idx := (floor_idx - baked_floor_min_index) + 1
-	var out_path := "%s_f%02d.png" % [output_png_base_path, file_idx]
-
-	var err := img.save_png(out_path)
-	if err != OK:
-		push_error("Failed to save PNG: %s (err=%s)" % [out_path, str(err)])
+	print("triangles considered: ", tri_considered, " updates: ", updates)
+	print("bytes: ", baked_ids.size(), " (~", snappedf(float(baked_ids.size()) / 1024.0, 0.01), " KB)")
 
 func _collect_meshes(root: Node) -> Array[MeshInstance3D]:
 	var out: Array[MeshInstance3D] = []
@@ -261,13 +168,13 @@ func _mesh_world_aabb(mi: MeshInstance3D) -> AABB:
 	var s := local_aabb.size
 
 	var corners: Array[Vector3] = [
-		Vector3(p.x,       p.y,       p.z),
-		Vector3(p.x + s.x, p.y,       p.z),
-		Vector3(p.x,       p.y + s.y, p.z),
+		Vector3(p.x, p.y, p.z),
+		Vector3(p.x + s.x, p.y, p.z),
+		Vector3(p.x, p.y + s.y, p.z),
 		Vector3(p.x + s.x, p.y + s.y, p.z),
-		Vector3(p.x,       p.y,       p.z + s.z),
-		Vector3(p.x + s.x, p.y,       p.z + s.z),
-		Vector3(p.x,       p.y + s.y, p.z + s.z),
+		Vector3(p.x, p.y, p.z + s.z),
+		Vector3(p.x + s.x, p.y, p.z + s.z),
+		Vector3(p.x, p.y + s.y, p.z + s.z),
 		Vector3(p.x + s.x, p.y + s.y, p.z + s.z),
 	]
 
@@ -293,28 +200,10 @@ func _tri_normal_y(v0: Vector3, v1: Vector3, v2: Vector3) -> float:
 		return -1.0
 	return n.y / sqrt(lsq)
 
-func _get_or_create_layer(layers: Dictionary, floor_idx: int, w: int, h: int) -> LayerData:
-	var existing := layers.get(floor_idx) as LayerData
-	if existing != null:
-		return existing
-
-	var layer := LayerData.new()
-	layer.best_y = PackedFloat32Array()
-	layer.best_id = PackedInt32Array()
-	layer.best_y.resize(w * h)
-	layer.best_id.resize(w * h)
-
-	for i in range(w * h):
-		layer.best_y[i] = INF
-		layer.best_id[i] = 0
-
-	layers[floor_idx] = layer
-	return layer
-
-func _raster_tri_to_layer(
+func _raster_tri_lowest(
 	v0: Vector3, v1: Vector3, v2: Vector3,
 	origin: Vector2, w: int, h: int, sid: int,
-	layers: Dictionary
+	best_y: PackedFloat32Array, best_id: PackedByteArray
 ) -> int:
 	var p0 := Vector2(v0.x, v0.z)
 	var p1 := Vector2(v1.x, v1.z)
@@ -331,15 +220,7 @@ func _raster_tri_to_layer(
 	var y1 = clamp(int(floor((maxy - origin.y) / cell_size)), 0, h - 1)
 
 	var y_candidate := (v0.y + v1.y + v2.y) / 3.0
-	var step = max(0.000001, floor_step)
-	var floor_idx := int(round((y_candidate - floor_origin_y) / step))
-
-	if abs(floor_idx) > 1024:
-		return -1
-
-	var layer := _get_or_create_layer(layers, floor_idx, w, h)
-	var best_y := layer.best_y
-	var best_id := layer.best_id
+	var wrote := 0
 
 	for yy in range(y0, y1 + 1):
 		for xx in range(x0, x1 + 1):
@@ -350,8 +231,9 @@ func _raster_tri_to_layer(
 				if y_candidate < best_y[idx]:
 					best_y[idx] = y_candidate
 					best_id[idx] = sid
+					wrote += 1
 
-	return floor_idx
+	return wrote
 
 func _point_in_tri_2d(p: Vector2, a: Vector2, b: Vector2, c: Vector2) -> bool:
 	var ab := (b - a).cross(p - a)

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://bf37kjueymd11"]
+
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_n6ack"]
+[ext_resource type="AudioStream" uid="uid://bxjcj8o2mky7r" path="res://assets/audio/step_gravel.mp3" id="2_n6ack"]
+[ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="3_ovr7e"]
+[ext_resource type="Material" uid="uid://cdqnugj8ou60" path="res://assets/materials/road_material.tres" id="4_fvu4i"]
+
+[resource]
+script = ExtResource("1_n6ack")
+stream = ExtResource("2_n6ack")
+size = 2.5
+bus = "Player"
+stealth_dampen = 0.2
+enemy_perception = 4.0
+surfaces = Array[ExtResource("3_ovr7e")]([ExtResource("4_fvu4i")])
+metadata/_custom_type_script = "uid://dcyi0d7pgmllh"

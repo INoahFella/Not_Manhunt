@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SoundSurface" format=3 uid="uid://dxiet3mbsubbl"]
+
+[ext_resource type="Resource" uid="uid://dd6pl8mico4ab" path="res://game/player/sounds/sfx_step_concrete.tres" id="1_hahfh"]
+[ext_resource type="Script" uid="uid://sjdylxuvm1j6" path="res://game/script/audio/sound_surface.gd" id="1_oh727"]
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="2_nfklg"]
+[ext_resource type="Resource" uid="uid://cu0ybj2hjo764" path="res://game/player/sounds/sfx_step_grass.tres" id="4_onrdx"]
+[ext_resource type="Resource" uid="uid://bf37kjueymd11" path="res://game/player/sounds/sfx_step_gravel.tres" id="5_npsa4"]
+[ext_resource type="Resource" uid="uid://cmdp5hsu21o1v" path="res://game/player/sounds/sfx_step_squishy.tres" id="6_5qwif"]
+
+[resource]
+script = ExtResource("1_oh727")
+sounds = Array[ExtResource("2_nfklg")]([ExtResource("1_hahfh"), ExtResource("4_onrdx"), ExtResource("5_npsa4"), ExtResource("6_5qwif")])
+default = ExtResource("1_hahfh")
+metadata/_custom_type_script = "uid://sjdylxuvm1j6"

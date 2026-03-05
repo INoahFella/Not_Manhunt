@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b51g8scf3fprn"]
+[gd_scene format=4 uid="uid://b51g8scf3fprn"]
 
 [ext_resource type="Script" uid="uid://yvl1rf2dyppr" path="res://game/player/player.gd" id="1_h6qv0"]
 [ext_resource type="Script" uid="uid://dipn8l8pge4r3" path="res://game/player/player_ui.gd" id="2_op4fd"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://pqbehjlnro8k" path="res://game/player/states/state_walk.gd" id="5_kyhyd"]
 [ext_resource type="PackedScene" uid="uid://1fsct2m3vp3u" path="res://game/player/Animated Human.fbx" id="7_tb4ck"]
 [ext_resource type="Script" uid="uid://c2iygeyt2js75" path="res://game/player/states/state_throw.gd" id="8_m2mll"]
-[ext_resource type="AudioStream" uid="uid://bsfsuwwy2fakp" path="res://assets/audio/untitled - Track 1.wav" id="11_hai6l"]
 [ext_resource type="Script" uid="uid://s0f4f2336heh" path="res://game/player/player_camera.gd" id="14_iffc0"]
 [ext_resource type="Script" uid="uid://bvfhviaedytuj" path="res://game/player/states/state_fall.gd" id="25_oqiui"]
 
@@ -27,6 +26,14 @@ dof_blur_far_enabled = true
 dof_blur_far_distance = 50.0
 dof_blur_far_transition = 100.0
 dof_blur_amount = 0.01
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_j0mij"]
+data = PackedByteArray("cW9hZgAADfsBACsRDfsFsAAAAAAAAAAAAAAAAOAAQABxVGKkymUDdZKaLn1TTTAIgVAXeFokz7xmxPD8Swqh8Iu6BIaJX1RJdEhxlyoUK7tsDUviWrCPGXVTC++r3Ankpz6ophNMEAN0HPuEVVuE2pTITIYBQF3RgowkrpVAkPWWmimHOiUXE4isqAaDVE8KkxRqSNSgB+vaGmUuZYCkweTQqYYThj1ZxjsKlKXczyz20yFTkkOCBbCTABZuEvlgxJprslblMvXNujWE9FjA/PVBNALGLZYJtfmtnYRxXw/FnY0awmJD9+TbaDTCseXQ1M9gUNjNOwTkwYCOmmgQGsKBjqz+IoRSyhLmX80SeBLGTBkxYiCBasTclCE6NKbSwlj2BCOoJrKlz6krsAg+EcZe1oJKWuXH4X0oN1pwiAni2XE6mYUD0MqKB34jA0vK4sIsVnEvGA2/nRjHJ6Plr8cSIYKbSNXOwDAriiExyB/acuK2jJPLou7K0/IaIbClxBrUsBLk8pPcw5nGRfynMOpFQgRaaXbF5DEinBmtBDfQ4hBXltvH6/caSK8CBLpA9OweRRxTo8r4zWUZqGKlwPPT70s3eQwDyug/CUQJB77xk2OyAEIkEfpSDV7NUm+q+Yxh+JH0pOHYh4nMnOejRMJkQjKM6Xb3y02TZRU+bu/CmH6kdjVJKOFZfV7GUTscy5leppx2JEz0RJ2Cl7SSiPAYRQ6Y5HCj6gBBKrZfl3P40zAggF2aCfoNZESKMQtu/pKg0xEQbmHSveS4Q4MaoOR47TJNBEMM+Il8WE2HlJXwSmjDyCmErPBCcNK3bcBA9xAgdLL0MMvYVdo+MT+s7vPURRKaQT949TuW/HSUkJvy5R3BRTmi57B+P8c32c0P1C3hlVURRIz24G2KYCODg+jvQ9VVLYmR56YGviFhsEzhBLA8bb1S4eMg1QsrfzAb9EhIgQsrkljyAUinAmwLT/UQeFiYOPSF1ENQ4VxZ1Pj27G4qRtWwU/v3KTMLSsJi0/5jgiVuYsTo90W+02kDGPTzRbY9SLoSyamMHN31y1D0kUjDUnd13rKFAGWHMfnZ9JoimEHdKljOam5CdJXAte5DZeLnUQDA4FOuwFA3BpT3Ki+JxOQFJfCMCHlAbIIb8o5goVJ9gsjisSYNyFWQb9VJiCqjMzl/4gNUCSFJzUHeeV+KxhiBZPBYrBTLSTSe/lRt0qNlFJrgkEmU2RRzxPShqROL7Fgb0WRYVowBHivcvxYMSrcs2fbRDFtmYYjB4lAdN1FuoDDWlrCqerYG7eCWMY1ci4ZK3ih2KQyAZqnqLY+0UsExCNhuvYBHrQCh0hCIWUK+LhfRyplGwoirQc5R9AyJxYye2qmg2F8MrQzHdcG0V5Sm29gMhTJBxaHc0WduwBCOIBTQCvSiyyQEUrQ8wkNMtdNVzwhRBIBiB1GUz3XWjqs9zMhSQZApHJpYtrGK5I+RMJfSAww6EjAyMPDRJKAZVrBF1FgLAwhIlIiq0rx/0VRKJqGuqMKlhXqdm1h+LQyagqHGHhSAwy2y2YQGiXgwSDwatoAx9lR1kiKeSB4YKWsGZXkiriC3qfIXnD+IEpvA9BKXY1vS0l5SgoBaTjxk6CZrgtjNlnepIAxgyjTnuvLj2Y8icIhIBrTUZz51WeLDObuICqwsGaojBWiVWoTybUTFYROd2xxaqNZpO6omSYlTF2xcowqSCbECW6l6p+BL84ZWn0FULWStqE68p5J2RubtWpiQQyEk0qdK1w1WYjJJkkXaWt9fbCDZQV4Ymh0y1IcztXCWmGMU6j+iEaiIkxddPeRuEJFSZ1c7R6gzNvWA4j4ziCUchYABM8NEMIEEkCkigq2+58EnNicFmwTBbJRKKwggwgpAAAkbn9VIke96PSNYZBbBJJZJFoe90BskgAgN91tttttttg222kkSSQAA")
+format = 3
+mix_rate = 11025
+tags = {
+"encoder": "FL Studio 2024"
+}
 
 [node name="Player" type="CharacterBody3D" unique_id=891888201 groups=["player"]]
 collision_layer = 16
@@ -115,7 +122,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999999, 2.9802322e-08, 0, -2.9802322e-08,
 [node name="Animated Human" parent="PivotCharacter" unique_id=220385707 instance=ExtResource("7_tb4ck")]
 transform = Transform3D(-0.55, 0, -4.8082526e-08, 0, 0.55, 0, 4.8082526e-08, 0, -0.55, 0, 0, 0)
 
-[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(220385707, 1119858619) index="0" unique_id=1431112014]
+[node name="Skeleton3D" parent="PivotCharacter/Animated Human/Human Armature" parent_id_path=PackedInt32Array(220385707, 2121240573) index="0" unique_id=980781813]
 bones/0/position = Vector3(0.00074666564, 0.038152654, 0.00069867796)
 bones/0/rotation = Quaternion(0.027622582, 0.066673644, -0.012323659, 0.9973163)
 bones/1/position = Vector3(1.2184666e-11, 0.0045643304, -0.000278749)
@@ -239,7 +246,7 @@ bones/46/position = Vector3(1.3083671e-09, 0.0030639714, -1.5785483e-10)
 bones/46/rotation = Quaternion(1.4600587e-08, -1.623878e-08, 2.56124e-08, 1)
 bones/46/scale = Vector3(1, 1, 1)
 
-[node name="Human_Mesh" parent="PivotCharacter/Animated Human/Human Armature/Skeleton3D" index="0" unique_id=675069521]
+[node name="Human_Mesh" parent="PivotCharacter/Animated Human/Human Armature/Skeleton3D" index="0" unique_id=1787072433]
 layers = 512
 
 [node name="PivotWeapon" type="Marker3D" parent="PivotCharacter" unique_id=1055741740]
@@ -295,7 +302,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 cull_mask = 1048063
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1847003813]
-stream = ExtResource("11_hai6l")
+stream = SubResource("AudioStreamWAV_j0mij")
 pitch_scale = 0.95
 
 [connection signal="on_enter" from="Machine" to="." method="_on_machine_on_enter"]

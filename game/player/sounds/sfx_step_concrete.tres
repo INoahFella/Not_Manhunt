@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3 uid="uid://dd6pl8mico4ab"]
+
+[ext_resource type="Script" uid="uid://dcyi0d7pgmllh" path="res://game/script/audio/sound_effect.gd" id="1_vnxlg"]
+[ext_resource type="AudioStream" uid="uid://b564xqqnxbuyp" path="res://assets/audio/step_concrete.mp3" id="2_01vvm"]
+[ext_resource type="Script" uid="uid://c882y1sfipvc0" path="res://addons/cum_simk_materials/scripts/shitty_material_3d.gd" id="3_bub2h"]
+[ext_resource type="Material" uid="uid://dtmmnxmspkmb2" path="res://assets/materials/sidewalk_material.tres" id="4_01vvm"]
+
+[resource]
+script = ExtResource("1_vnxlg")
+stream = ExtResource("2_01vvm")
+size = 2.5
+bus = "Player"
+stealth_dampen = 1.0
+enemy_perception = 0.6
+surfaces = Array[ExtResource("3_bub2h")]([ExtResource("4_01vvm")])
+metadata/_custom_type_script = "uid://dcyi0d7pgmllh"
