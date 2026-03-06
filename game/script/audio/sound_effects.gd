@@ -48,7 +48,7 @@ func play(sound_effect: SoundEffect, where: Node3D) -> void:
 	emitted.emit(sound_effect.bus, where.global_position, sound_effect)
 
 func play_surface(sound_surface: SoundSurface, where: Node3D) -> void:
-	var surface_id = Game.get_surface_map().get_surface_id(where.global_position)
+	var surface_id = Game.get_map().get_surface_id(where.global_position)
 	var sound_effect = sound_surface.find_sound(surface_id)
 
 	play(sound_effect, where)

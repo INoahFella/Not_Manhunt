@@ -6,7 +6,7 @@ signal moved(at: Vector3)
 
 @onready var state_machine = $Machine as EnemyMachine
 @onready var state_default = $Machine/Idle as EnemyState
-@onready var state_animate = $"PivotCharacter/Animated Human/AnimationPlayer" as AnimationPlayer
+@onready var state_animate = $"PivotCharacter/werewolf/AnimationPlayer" as AnimationPlayer
 
 var gravity_enabled = true
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
